@@ -1,0 +1,79 @@
+{% extends "template/layout.html" %} {% block content %}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1>Blank Page</h1>
+        </div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Blank Page</li>
+            </ol>
+        </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title d-inline mt-2">Title</h3>
+            <span clas="float-right">
+                <button type="button" data-toggle="modal" data-target="#addRoleModal" class="btn btn-primary btn-sm float-right" >
+                    <i class="fa fa-plus"></i>
+                </button>
+            </span>
+        </div>
+        <div class="card-body">
+            <table id="tableRole" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Role</th>
+                    <th>Created By</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="listRole">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.card -->
+
+</section>
+<div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tambah Role</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="nip" class="form-control-label">Nama Role Permission</label>
+                                <input type="text" id="nama" name="nama" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" id="btnAddRole" class="btn btn-primary">Tambah</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.content -->
+{% endblock %}
+{% block js %}
+<script src="{{base_url}}assets/action/role.js"></script>
+{% endblock %}
