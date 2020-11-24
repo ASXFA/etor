@@ -80,6 +80,13 @@ class Model_users extends CI_Model {
         return $query;
     }
 
+    public function changeStatus($id,$data)
+    {
+        $this->db->where('id',$id);
+        $query = $this->db->update('users',$data);
+        return $query;
+    }
+
     public function editUsers($id,$data)
     {
         $this->db->where('id',$id);

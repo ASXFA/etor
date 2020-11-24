@@ -15,17 +15,103 @@ $(function(){
         ],
     });
 
-    $('#btnAddRole').click(function(){
-        var nama = $('#nama').val();
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+
+    $('#formRole').submit(function(e){
+        e.preventDefault();
+        var nama = $('#nama_role').val();
+        var role_id = $('#role_id').val();
+        var operation = $('#operation').val();
+        if (nama != '') {
+            $.ajax({
+                method:'POST',
+                dataType:'JSON',
+                data:{nama:nama,role_id:role_id,operation:operation},
+                url:'doRole',
+                success:function(result){
+                    Swal.fire({
+                        icon:'success',
+                        title: 'Sukses di '+operation+' !',
+                        timer: 2000,
+                        timerProgressBar: true,
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            location.reload();
+                        }else if(result.isConfirmed){
+                            location.reload();
+                        }
+                    })
+                }
+            })
+        }else{
+            Toast.fire({
+                icon: 'error',
+                title: 'Semua field harus diisi !'
+            })
+        }
+    })
+
+    //event each button edit
+    $(document).on('click','.update',function(){
+        var ids = $(this).attr("id");
         $.ajax({
             method:'POST',
             dataType:'JSON',
-            data:{nama:nama},
-            url:'addRole',
+            data:{id:ids},
+            url:'roleById',
             success:function(result){
-                alert('tambah berhasil');
-                location.reload();
+                $('#addRoleModal').modal('show');
+                $('#role_id').val(ids);
+                $('#action').val('Edit');
+                $('#operation').val('Edit');
+                $('#nama_role').val(result.nama);
             }
         })
     })
+
+    // event each button delete
+    $(document).on('click','.delete',function(){
+        var ids = $(this).attr("id");
+        Swal.fire({
+            title: 'Yakin untuk dihapus ?',
+            text: "Data akan permanen dihapus !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    method:'POST',
+                    dataType:'JSON',
+                    data:{id:ids},
+                    url:'deleteRole',
+                    success:function()
+                    {
+                        Swal.fire({
+                            icon:'success',
+                            title: 'Sukses di Hapus !',
+                            timer: 2000,
+                            timerProgressBar: true,
+                        }).then((result) => {
+                            /* Read more about handling dismissals below */
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                location.reload();
+                            }else if(result.isConfirmed){
+                                location.reload();
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    })
+
 })

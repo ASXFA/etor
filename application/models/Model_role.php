@@ -44,9 +44,34 @@ class Model_role extends CI_Model{
         return $this->db->count_all_results();
     }
 
+    public function getAll()
+    {
+        return $this->db->get($this->table)->result();
+    }
+
+    public function getById($id)
+    {
+        $this->db->where('id',$id);
+        return $this->db->get($this->table);
+    }
+
     public function addRole($data)
     {
         $query = $this->db->insert('role_permission',$data);
+        return $query;
+    }
+
+    public function editRole($id,$data)
+    {
+        $this->db->where('id',$id);
+        $query = $this->db->update($this->table,$data);
+        return $query; 
+    }
+
+    public function deleteRole($id)
+    {
+        $this->db->where('id',$id);
+        $query = $this->db->delete($this->table);
         return $query;
     }
 

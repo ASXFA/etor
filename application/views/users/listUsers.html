@@ -3,12 +3,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>Blank Page</h1>
+            <h1>List Users</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Blank Page</li>
+            <li class="breadcrumb-item active">List Users</li>
             </ol>
         </div>
         </div>
@@ -19,7 +19,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title d-inline mt-2">Title</h3>
+            <h3 class="card-title d-inline mt-2">List Users</h3>
             <span clas="float-right">
                 <button type="button" data-toggle="modal" data-target="#addUsersModal" class="btn btn-primary btn-sm float-right" >
                     <i class="fa fa-plus"></i>
@@ -57,31 +57,45 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+                <form id="formUsers" method="post">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="nip" class="form-control-label">NIP</label>
-                                <input type="text" id="nip" name="nip" class="form-control" maxlength="16">
+                                <input type="text" id="nip" name="nip" class="form-control" maxlength="16" required>
                             </div>
                             <div class="form-group">
                                 <label for="nama" class="form-control-label">Nama</label>
-                                <input type="text" name="nama" class="form-control">
+                                <input type="text" name="nama" id="nama" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-control-label">Email</label>
+                                <input type="email" name="email" id="email" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for="no_hp" class="form-control-label">Nomor Handphone (aktif)</label>
+                                <input type="text" name="no_hp" id="no_hp" maxlength="12" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="jabatan" class="form-control-label">Jabatan</label>
+                                <input type="text" name="jabatan" id="jabatan" class="form-control" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="role" class="form-control-label">Role</label>
-                                <input type="text" id="nip" name="role" class="form-control">
+                                <input type="text" name="user_id" id="user_id" hidden>
+                                <input type="text" name="operation" id="operation" value="Add" hidden>
+                                <select name="role" id="role_user" class="form-control"></select>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" id="action" value='Add'>
+                </div>
+            </form>
         </div>
     </div>
 </div>

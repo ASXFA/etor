@@ -54,5 +54,5 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['^(action_login|logout)(/:any)?$'] = 'Auth/$0';
-$route['^(listUsers|userLists)(/:any)?$'] = 'Users/$0';
-$route['^(listRole|roleLists|addRole)(/:any)?$'] = 'Role/$0';
+$route['^(listUsers|userLists|changeStatusUser|doUser|userById|deleteUser)(/:any)?$'] = 'Users/$0';
+$route['^(listRole|roleLists|doRole|deleteRole|roleById|getRole)(/:any)?$'] = 'Role/$0';
