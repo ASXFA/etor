@@ -9,6 +9,7 @@ class Model_users extends CI_Model {
     function make_query()
     {
         $this->db->select($this->select_column);
+        $id = $this->session->userdata('id');
         $this->db->from($this->table);
         if (isset($_POST['search']['value'])) {
             $this->db->like('nip',$_POST['search']['value']);
@@ -16,6 +17,7 @@ class Model_users extends CI_Model {
             $this->db->or_like('role',$_POST['search']['value']);
             $this->db->or_like('status',$_POST['search']['value']);
         }
+        $this->db->not_like('id',$id);
         if (isset($_POST['order'])) {
             $this->db->order_by($this->order_column[$_POST['order']['0']['column']],$_POST['order']['0']['dir']);
         }else{
@@ -29,8 +31,6 @@ class Model_users extends CI_Model {
         if ($_POST['length'] != -1) {
             $this->db->limit($_POST['length'],$_POST['start']);
         }
-        $id = $this->session->userdata('id');
-        $this->db->not_like('id',$id);
         $query = $this->db->get();
         return $query->result();
     }
@@ -38,8 +38,6 @@ class Model_users extends CI_Model {
     function get_filtered_data()
     {
         $this->make_query();
-        $id = $this->session->userdata('id');
-        $this->db->not_like('id',$id);
         $query = $this->db->get();
         return $query->num_rows();
     }
@@ -47,9 +45,9 @@ class Model_users extends CI_Model {
     function get_all_data()
     {
         $this->db->select('*');
-        $this->db->from($this->table);
         $id = $this->session->userdata('id');
         $this->db->not_like('id',$id);
+        $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
@@ -59,6 +57,16 @@ class Model_users extends CI_Model {
         $query = $this->db->get('users');
         return $query;
     }
+
+    
+	public function getByRole($role)
+	{
+        $this->db->where('role',$role);
+        $this->db->where('status',1);
+        $query = $this->db->get('users')->result();
+        return $query;
+    }
+
     
     public function getById($id)
     {

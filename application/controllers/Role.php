@@ -7,7 +7,7 @@ class Role extends CI_Controller {
     {
         parent::__construct();
         if ($this->session->userdata('isLogin')!=1) {
-            redirect('login');
+            redirect('Auth');
         }
         $this->id = $this->session->userdata('id');
         $this->nama = $this->session->userdata('nama');

@@ -35,30 +35,34 @@ class Users extends CI_Controller {
         $list = $this->model_users->make_datatables();
         $data = array();
         $no = 1;
-        foreach($list as $row):
-            $sub_data = array();
-            $sub_data[] = $no;
-            $sub_data[] = $row->nip;
-            $sub_data[] = $row->nama;
-            foreach($role as $r):
-                if ($r->id == $row->role) {
-                    $sub_data[] = $r->nama;
+        if (!empty($list)) {
+            foreach($list as $row):
+                $sub_data = array();
+                $sub_data[] = $no;
+                $sub_data[] = $row->nip;
+                $sub_data[] = $row->nama;
+                foreach($role as $r):
+                    if ($r->id == $row->role) {
+                        $sub_data[] = $r->nama;
+                    }
+                endforeach;
+                if ($row->status == 1) {
+                    $sub_data[] = "<span class='badge badge-success p-2'> Aktif </span>";
+                }else{
+                    $sub_data[] = "<span class='badge badge-danger p-2'> Tidak Aktif </span>";
                 }
+                $sub_data[] = $row->created_by;
+                if ($row->status == 1) {
+                    $sub_data[] = "<button type='button' name='changeStat' class='btn btn-danger btn-sm mr-2 status' id='".$row->id."' data-stat='0' title='ganti status tidak aktif'><i class='fa fa-times'></i></button><button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button><button type='button' name='delete' class='btn btn-danger btn-sm delete' id='".$row->id."'> Delete </button>";
+                }else{
+                    $sub_data[] = "<button type='button' name='changeStat' class='btn btn-success btn-sm mr-2 status' id='".$row->id."' data-stat='1' title='ganti status aktif'><i class='fa fa-check'></i></button><button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button><button type='button' name='delete' class='btn btn-danger btn-sm delete' id='".$row->id."'> Delete </button>";
+                }
+                $data[] = $sub_data;
+            $no++;
             endforeach;
-            if ($row->status == 1) {
-                $sub_data[] = "<span class='badge badge-success p-2'> Aktif </span>";
-            }else{
-                $sub_data[] = "<span class='badge badge-danger p-2'> Tidak Aktif </span>";
-            }
-            $sub_data[] = $row->created_by;
-            if ($row->status == 1) {
-                $sub_data[] = "<button type='button' name='changeStat' class='btn btn-danger btn-sm mr-2 status' id='".$row->id."' data-stat='0' title='ganti status tidak aktif'><i class='fa fa-times'></i></button><button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button><button type='button' name='delete' class='btn btn-danger btn-sm delete' id='".$row->id."'> Delete </button>";
-            }else{
-                $sub_data[] = "<button type='button' name='changeStat' class='btn btn-success btn-sm mr-2 status' id='".$row->id."' data-stat='1' title='ganti status aktif'><i class='fa fa-check'></i></button><button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button><button type='button' name='delete' class='btn btn-danger btn-sm delete' id='".$row->id."'> Delete </button>";
-            }
-            $data[] = $sub_data;
-        $no++;
-        endforeach;
+        }else{
+            $data[] = "data belum ada";
+        }
 
         $output = array(
             'draw' => intval($_POST['draw']),
@@ -135,5 +139,12 @@ class Users extends CI_Controller {
         $id = $this->input->post('id');
         $proccess = $this->model_users->deleteUsers($id);
         return $proccess;
+    }
+
+    public function getUserByRole()
+    {
+        $role = $this->input->post('role');
+        $process = $this->model_users->getByRole($role);
+        echo json_encode($process);
     }
 }

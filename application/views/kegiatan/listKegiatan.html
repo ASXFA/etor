@@ -1,0 +1,189 @@
+{% extends "template/layout.html" %} {% block content %}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <img src="{{base_url}}assets/img/form/header_etor.png" alt="" class="img-fluid">
+        <!-- <div class="col-sm-6">
+            <h1>List Users</h1>
+        </div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">List Users</li>
+            </ol>
+        </div> -->
+        </div>
+    </div>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title d-inline mt-2">List Kegiatan</h3>
+            <span clas="float-right">
+                <a href='formKegiatan' type="button" class="btn btn-primary btn-sm float-right" >
+                    <i class="fa fa-plus"></i>
+                </a>
+            </span>
+        </div>
+        <div class="card-body">
+            <table id="tableKegiatan" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kegiatan</th>
+                    <th>Sub Kegiatan</th>
+                    <th>Tanggal Penulisan</th>
+                    <th>Anggaran</th>
+                    <th>Nama Pengusul (PPTK)</th>
+                    <th>Created By</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="listKegiatan">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.card -->
+
+</section>
+<div class="modal fade" id="addKegiatanModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Kegiatan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formKegiatan" method="post">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="biro" class="form-control-label">PD/BIRO</label>
+                                <input type="text" name="biro" id="biro" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bagian" class="form-control-label">Bagian</label>
+                                <input type="text" name="bagian" id="bagian" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sub_bagian" class="form-control-label">Sub Bagian</label>
+                                <input type="text" name="sub_bagian" id="sub_bagian" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lokasi" class="form-control-label">Detail Lokasi Kegiatan</label>
+                                <input type="text" name="lokasi" id="lokasi" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="program" class="form-control-label">Program</label>
+                                <input type="text" name="program" id="program" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="kegiatan" class="form-control-label">Kegiatan</label>
+                                <input type="text" name="kegiatan" id="kegiatan" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sub_kegiatan" class="form-control-label">Sub Kegiatan</label>
+                                <input type="text" name="sub_kegiatan" id="sub_kegiatan" class="form-control" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="anggaran" class="form-control-label">Anggaran</label>
+                                        <input type="text" name="anggaran" id="anggaran" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="apbd_murni" class="form-control-label">APBD Murni</label>
+                                        <input type="text" name="apbd_murni" id="apbd_murni" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="apbd_perubahan" class="form-control-label">APBD Perubahan</label>
+                                        <input type="text" name="apbd_perubahan" id="apbd_perubahan" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="tanggal_pengisian" class="form-control-label">Tanggal Pengisian</label>
+                                        <input type="date" name="tanggal_pengisian" id="tanggal_pengisian" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="sifat_kegiatan" class="form-control-label">Sifat Kegiatan</label>
+                                        <input type="text" name="sifat_kegiatan" id="sifat_kegiatan" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="nama_pengusul" class="form-control-label">Nama Pengusul (PPTK)</label>
+                                        <select name="nama_pengusul" id="nama_pengusul" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="nip" class="form-control-label">NIP</label>
+                                        <input type="text" name="nip" id="nip" class="form-control" readonly required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="latar_belakang" class="form-control-label">Latar Belakang</label>
+                                <textarea name="latar_belakang" id="latar_belakang" cols="30" rows="5" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="maksud_tujuan" class="form-control-label">Maksud & Tujuan</label>
+                                <textarea name="maksud_tujuan" id="maksud_tujuan" cols="30" rows="5" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="sasaran" class="form-control-label">Sasaran</label>
+                                <textarea name="sasaran" id="sasaran" cols="30" rows="5" class="form-control" required></textarea>
+                            </div>
+                            <input type="text" name="kegiatan_id" id="kegiatan_id" hidden>
+                            <input type="text" name="operation" id="operation" hidden>
+                            <input type="submit" class="btn btn-primary float-right" id="action" value="">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal Detail -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img src="{{base_url}}assets/img/form/header_etor.png" alt="" class="img-fluid">
+                        <div id="detailKegiatan">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.content -->
+{% endblock %}
+{% block js %}
+<script src="{{base_url}}assets/action/kegiatan.js"></script>
+{% endblock %}
