@@ -37,7 +37,11 @@ class Role extends CI_Controller {
             $sub_data[] = $no;
             $sub_data[] = $row->nama;
             $sub_data[] = $row->created_by;
-            $sub_data[] = "<button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button><button type='button' name='delete' class='btn btn-danger btn-sm delete' id='".$row->id."'> Delete </button>";
+            if ($row->id > 3) {
+                $sub_data[] = "<button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button><button type='button' name='delete' class='btn btn-danger btn-sm delete' id='".$row->id."'> Delete </button>";
+            }else{
+                $sub_data[] = "<button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button>";  
+            }
             $data[] = $sub_data;
         $no++;
         endforeach;     
@@ -63,7 +67,11 @@ class Role extends CI_Controller {
 
     public function getRole()
     {
-        $role = $this->model_role->getAll();
+        if ($this->role == 2) {
+            $role = $this->model_role->getById(3)->result();
+        }else if($this->role == 1){
+            $role = $this->model_role->getAll()->result();
+        }
         echo json_encode($role);
     }
 

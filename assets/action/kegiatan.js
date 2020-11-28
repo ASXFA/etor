@@ -18,9 +18,9 @@ $(function(){
                 var html = '';
                 var i = 0;
                 if (result.length > 0) {
+                    html += '<option>PILIH</option>';
                     for(i; i<result.length; i++)
                     {
-                        html += '<option>PILIH</option>';
                         html += '<option value="'+result[i].id+'">'+result[i].nama+'</option>';
                     }
                     $('#nama_pengusul').html(html);
@@ -83,7 +83,7 @@ $(function(){
                     success:function(result){
                         Swal.fire({
                             icon:'success',
-                            title: 'Kegiatan sukses ditambah !',
+                            title: 'Kegiatan sukses di'+operation+' !',
                             timer: 2000,
                             timerProgressBar: true,
                         }).then((result) => {
@@ -110,7 +110,7 @@ $(function(){
         }
     })
 
-    // datatables
+    // datatables list Kegiatan
     $('#tableKegiatan').DataTable({
         "processing": false,
         "serverSide": true,
@@ -121,7 +121,24 @@ $(function(){
         },
         "columnDefs":[
             {
-                "targets":[0,2,3,4],
+                "targets":[-1],
+                "orderable":false,
+            },
+        ],
+    });
+
+    // datatables list kegiatan saya 
+    $('#tableKegiatanSaya').DataTable({
+        "processing": false,
+        "serverSide": true,
+        "order":[],
+        "ajax":{
+            url:"kegiatanSayaLists",
+            type:"post",
+        },
+        "columnDefs":[
+            {
+                "targets":[-1],
                 "orderable":false,
             },
         ],
@@ -218,10 +235,11 @@ $(function(){
     //event each button edit
     $(document).on('click','.update',function(){
         var ids = $(this).attr("id");
+        var type = 'Edit';
         $.ajax({
             method:'POST',
             dataType:'JSON',
-            data:{id:ids},
+            data:{id:ids,type:type},
             url:'kegiatanById',
             success:function(result){
                 $('#addKegiatanModal').modal('show');

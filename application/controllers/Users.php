@@ -31,33 +31,53 @@ class Users extends CI_Controller {
     public function userLists()
     {
         $this->load->model('model_role');
-        $role = $this->model_role->getAll();
         $list = $this->model_users->make_datatables();
         $data = array();
         $no = 1;
         if (!empty($list)) {
             foreach($list as $row):
                 $sub_data = array();
-                $sub_data[] = $no;
-                $sub_data[] = $row->nip;
-                $sub_data[] = $row->nama;
-                foreach($role as $r):
-                    if ($r->id == $row->role) {
-                        $sub_data[] = $r->nama;
+                if ($this->role == 1) {
+                    if ($row->id != $this->id) {
+                        $sub_data[] = $no;
+                        $sub_data[] = $row->nip;
+                        $sub_data[] = $row->nama;
+                        $role = $this->model_role->getById($row->role)->row();
+                        $sub_data[] = $role->nama;
+                        if ($row->status == 1) {
+                            $sub_data[] = "<span class='badge badge-success p-2'> Aktif </span>";
+                        }else{
+                            $sub_data[] = "<span class='badge badge-danger p-2'> Tidak Aktif </span>";
+                        }
+                        $sub_data[] = $row->created_by;
+                        if ($row->status == 1) {
+                            $sub_data[] = "<button type='button' name='changeStat' class='btn btn-danger btn-sm mr-2 status' id='".$row->id."' data-stat='0' title='ganti status tidak aktif'><i class='fa fa-times'></i></button><button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button><button type='button' name='delete' class='btn btn-danger btn-sm delete' id='".$row->id."'> Delete </button>";
+                        }else{
+                            $sub_data[] = "<button type='button' name='changeStat' class='btn btn-success btn-sm mr-2 status' id='".$row->id."' data-stat='1' title='ganti status aktif'><i class='fa fa-check'></i></button><button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button><button type='button' name='delete' class='btn btn-danger btn-sm delete' id='".$row->id."'> Delete </button>";
+                        }
+                        $data[] = $sub_data;
                     }
-                endforeach;
-                if ($row->status == 1) {
-                    $sub_data[] = "<span class='badge badge-success p-2'> Aktif </span>";
-                }else{
-                    $sub_data[] = "<span class='badge badge-danger p-2'> Tidak Aktif </span>";
+                }else if ($this->role == 2) {
+                    if ($row->role == 3) {
+                        $sub_data[] = $no;
+                        $sub_data[] = $row->nip;
+                        $sub_data[] = $row->nama;
+                        $role = $this->model_role->getById($row->role)->row();
+                        $sub_data[] = $role->nama;
+                        if ($row->status == 1) {
+                            $sub_data[] = "<span class='badge badge-success p-2'> Aktif </span>";
+                        }else{
+                            $sub_data[] = "<span class='badge badge-danger p-2'> Tidak Aktif </span>";
+                        }
+                        $sub_data[] = $row->created_by;
+                        if ($row->status == 1) {
+                            $sub_data[] = "<button type='button' name='changeStat' class='btn btn-danger btn-sm mr-2 status' id='".$row->id."' data-stat='0' title='ganti status tidak aktif'><i class='fa fa-times'></i></button><button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button><button type='button' name='delete' class='btn btn-danger btn-sm delete' id='".$row->id."'> Delete </button>";
+                        }else{
+                            $sub_data[] = "<button type='button' name='changeStat' class='btn btn-success btn-sm mr-2 status' id='".$row->id."' data-stat='1' title='ganti status aktif'><i class='fa fa-check'></i></button><button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button><button type='button' name='delete' class='btn btn-danger btn-sm delete' id='".$row->id."'> Delete </button>";
+                        }
+                        $data[] = $sub_data;
+                    }
                 }
-                $sub_data[] = $row->created_by;
-                if ($row->status == 1) {
-                    $sub_data[] = "<button type='button' name='changeStat' class='btn btn-danger btn-sm mr-2 status' id='".$row->id."' data-stat='0' title='ganti status tidak aktif'><i class='fa fa-times'></i></button><button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button><button type='button' name='delete' class='btn btn-danger btn-sm delete' id='".$row->id."'> Delete </button>";
-                }else{
-                    $sub_data[] = "<button type='button' name='changeStat' class='btn btn-success btn-sm mr-2 status' id='".$row->id."' data-stat='1' title='ganti status aktif'><i class='fa fa-check'></i></button><button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button><button type='button' name='delete' class='btn btn-danger btn-sm delete' id='".$row->id."'> Delete </button>";
-                }
-                $data[] = $sub_data;
             $no++;
             endforeach;
         }else{
@@ -85,7 +105,7 @@ class Users extends CI_Controller {
                 'email' => $this->input->post('email'),
                 'no_hp' => $this->input->post('no_hp'),
                 'jabatan' => $this->input->post('jabatan'),
-                'password' => password_hash($this->input->post('password'),PASSWORD_BCRYPT),
+                'password' => password_hash($this->input->post('nip'),PASSWORD_BCRYPT),
                 'role' => $this->input->post('role'),
                 'status' => 0,
                 'created_by' => $this->nama
@@ -100,7 +120,6 @@ class Users extends CI_Controller {
                 'no_hp' => $this->input->post('no_hp'),
                 'jabatan' => $this->input->post('jabatan'),
                 'role' => $this->input->post('role'),
-                'status' => $this->input->post('status'),
                 'updated_at' => date('Y-m-d H:i:s'),
                 'updated_by' => $this->nama
             );

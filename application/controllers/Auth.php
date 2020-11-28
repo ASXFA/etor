@@ -43,7 +43,8 @@ class Auth extends CI_Controller {
                     $this->session->set_flashdata('msgLogin','Halo, Selamat Datang ');
                     redirect('listUsers');
                 }else if($role == 2){   
-                    // $this->session->set_flashdata('msgLogin','Halo, Selamat Datang ');
+                    $this->session->set_flashdata('msgLogin','Halo, Selamat Datang ');
+                    redirect('listUsers');
                 }else if($role == 3){
                     // $this->session->set_flashdata('msgLogin','Halo, Selamat Datang ');
                 }

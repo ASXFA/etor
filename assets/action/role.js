@@ -9,7 +9,7 @@ $(function(){
         },
         "columnDefs":[
             {
-                "targets":[0,2,3],
+                "targets":[-1],
                 "orderable":false,
             },
         ],
@@ -42,9 +42,9 @@ $(function(){
                     }).then((result) => {
                         /* Read more about handling dismissals below */
                         if (result.dismiss === Swal.DismissReason.timer) {
-                            location.reload();
+                            $('#tableRole').DataTable.ajax.reload();
                         }else if(result.isConfirmed){
-                            location.reload();
+                            $('#tableRole').DataTable.ajax.reload();
                         }
                     })
                 }
@@ -103,9 +103,9 @@ $(function(){
                         }).then((result) => {
                             /* Read more about handling dismissals below */
                             if (result.dismiss === Swal.DismissReason.timer) {
-                                location.reload();
+                                $('#tableRole').DataTable.ajax.reload();
                             }else if(result.isConfirmed){
-                                location.reload();
+                                $('#tableRole').DataTable.ajax.reload();
                             }
                         })
                     }
