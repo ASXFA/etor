@@ -2,10 +2,11 @@
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
-            <img src="{{base_url}}assets/img/form/header_etor.png" alt="" class="img-fluid">
-        <!-- <div class="col-sm-6">
+            <!-- <img src="{{base_url}}assets/img/form/header_etor.png" alt="" class="img-fluid d-block mx-auto"> -->
+        <div class="col-sm-6">
             <h1>List Users</h1>
         </div>
+        <!--
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -18,23 +19,36 @@
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
-    <div class="card">
+    <div class="card card-success card-outline">
         <div class="card-header">
             <h3 class="card-title d-inline mt-2">List Kegiatan Saya</h3>
         </div>
         <div class="card-body">
             <table id="tableKegiatanSaya" class="table table-bordered table-hover">
                 <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Kegiatan</th>
-                    <th>Sub Kegiatan</th>
-                    <th>Tanggal Penulisan</th>
-                    <th>Anggaran</th>
-                    <th>Nama Pengusul (PPTK)</th>
-                    <th>Created By</th>
-                    <th>Action</th>
-                </tr>
+                    {% if role == 2 %}
+                    <tr>
+                        <th>No</th>
+                        <th>Kegiatan</th>
+                        <th>Sub Kegiatan</th>
+                        <th>Tanggal Pengusulan</th>
+                        <th>Anggaran Sub Kegiatan</th>
+                        <th>Nama Pengusul (PPTK)</th>
+                        <th>Nama Pemegang Kegiatan</th>
+                        <th>Created By</th>
+                        <th>Action</th>
+                    </tr>
+                    {% endif %}
+                    {% if role == 3 %}
+                    <tr>
+                        <th>No</th>
+                        <th>Kegiatan</th>
+                        <th>Sub Kegiatan</th>
+                        <th>Anggaran Sub Kegiatan</th>
+                        <th>Created By</th>
+                        <th>Action</th>
+                    </tr>
+                    {% endif %}
                 </thead>
                 <tbody id="listKegiatanSaya">
                 </tbody>
@@ -44,6 +58,54 @@
     <!-- /.card -->
 
 </section>
+<!-- modal Detail -->
+<div class="modal fade" id="addPenyediaModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img src="{{base_url}}assets/img/form/header_etor.png" alt="" class="img-fluid">
+                        <form method="post">
+                            <input type="text" name="id_kegiatan_paket" id="id_kegiatan_paket" hidden required>
+                            <div class="form-group">
+                                <label for="Kodering" class="form-control-label">Pilih Uraian Belanja</label>
+                                <select name="kodering" id="kodering" class="form-control select2bs4" style="width: 100%;" required></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="deskripsi" class="form-control-label">Deskripsi Barang</label>
+                                <input type="text" class="form-control" name="deskripsi_barang" id="deskripsi_barang" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="jumlah_barang" class="form-control-label">Jumlah Barang</label>
+                                        <input type="text" class="form-control" name="jumlah_barang" id="jumlah_barang" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="Tipe Barang" class="form-control-label">Tipe Barang</label>
+                                        <input type="text" class="form-control" name="tipe_barang" id="tipe_barang" required>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnTambahPeyendiaPaket"> Tambahkan </button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
 <!-- modal Detail -->
 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-xl">
@@ -58,12 +120,41 @@
                     <div class="col-lg-12">
                         <img src="{{base_url}}assets/img/form/header_etor.png" alt="" class="img-fluid">
                         <div id="detailKegiatan">
-
+                                
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<!-- modal Delegasi -->
+<div class="modal fade" id="delegasiModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img src="{{base_url}}assets/img/form/header_etor.png" alt="" class="img-fluid">
+                        <form id="delegasiForm" method="post">
+                            <input type="text" id="id_kegiatan" name="id_kegiatan" hidden>
+                            <label for="" class="form-control-label">Pilih user Pemegang Kegiatan yang akan didelegasikan </label>
+                            <select name="nama_pemegang_kegiatan" id="nama_pemegang_kegiatan" class="form-control select2bs4" style="width: 100%;" required>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" id="action" value='Tambahkan'>
+                </div>
+            </form>
+            </div>
     </div>
 </div>
 <!-- /.content -->

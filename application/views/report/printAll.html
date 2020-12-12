@@ -1,0 +1,51 @@
+{% extends "template/layout.html" %} {% block content %}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <!-- <img src="{{base_url}}assets/img/form/header_etor.png" alt="" class="img-fluid"> -->
+        <div class="col-sm-6">
+            <h1>List Kegiatan</h1>
+        </div>
+        <!--
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">List Users</li>
+            </ol>
+        </div> -->
+        </div>
+    </div>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title d-inline mt-2">List Kegiatan</h3>
+        </div>
+        <div class="card-body">
+            <table id="tableKegiatan" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kegiatan</th>
+                    <th>Sub Kegiatan</th>
+                    <th>Tanggal Pengusulan</th>
+                    <th>Anggaran Sub Kegiatan</th>
+                    <th>Nama Pengusul (PPTK)</th>
+                    <th>Created By</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="listKegiatan">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.card -->
+
+</section>
+{% endblock %}
+{% block js %}
+<script src="{{base_url}}assets/action/printKegiatan.js"></script>
+{% endblock %}

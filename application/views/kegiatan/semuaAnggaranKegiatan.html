@@ -1,0 +1,57 @@
+{% extends "template/layout.html" %} {% block content %}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <!-- <img src="{{base_url}}assets/img/form/header_etor.png" alt="" class="img-fluid"> -->
+        <!-- <div class="col-sm-6">
+            <h1>List Users</h1>
+        </div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">List Users</li>
+            </ol>
+        </div> -->
+        </div>
+    </div>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card card-success card-outline">
+        <div class="card-header">
+            <h3 class="card-title d-inline mt-2">Semua Anggaran Kegiatan</h3>
+            <!-- <span clas="float-right">
+                <a href='formKegiatan' type="button" class="btn btn-primary btn-sm float-right" >
+                    <i class="fa fa-plus"></i>
+                </a>
+            </span> -->
+        </div>
+        <div class="card-body">
+            <table id="tableListSemuaAnggaran" class="table table-hover table-bordered table-sm ">
+                <thead class="thead-dark">
+                <tr>
+                    <th rowspan="2" class="text-center align-middle">Biro</th>
+                    <th colspan="2" class="text-center align-middle">Kegiatan</th>
+                    <th rowspan="2" class="text-center align-middle">Jumlah Usulan Anggaran</th>
+                    <th rowspan="2" class="text-center align-middle">Action</th>
+                    <tr>
+                        <th class="text-center align-middle" width="14%">Jumlah Kegiatan</th>
+                        <th class="text-center align-middle" width="14%">Jumlah Sub Kegiatan</th>
+                    </tr>
+                </tr>
+                </thead>
+                <tbody id="listSemuaAnggaran">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+{% endblock %}
+{% block js %}
+<script src="{{base_url}}assets/action/kegiatan.js"></script>
+{% endblock %}

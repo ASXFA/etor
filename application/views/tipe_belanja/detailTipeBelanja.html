@@ -1,0 +1,301 @@
+{% extends "template/layout.html" %} {% block content %}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1>Detail Tipe Belanja</h1>
+        </div>
+        <!--
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right"> -->
+            <!-- <li class="breadcrumb-item"><a href="#">Home</a></li> -->
+            <!-- <li class="breadcrumb-item active">Form Kegiatan</li>
+            </ol>
+        </div> -->
+            <!-- <img src="{{base_url}}assets/img/form/header_etor.png" alt="" class="img-fluid"> -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<input type="text" id="id_tipe_belanja_global" value="{{id_tipe_belanja}}" hidden>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card card-success card-outline">
+                <div class="card-header">
+                    <h5>INFORMASI KEGIATAN & SUB KEGIATAN</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td width="25%"><strong>Kegiatan</strong></td>
+                            <td>{{kegiatan}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sub Kegiatan</strong></td>
+                            <td>{{sub_kegiatan}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card card-success card-outline">
+                <div class="card-header">
+                    <h5>INFORMASI TIPE BELANJA</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td width="20%"><strong>{{kodering1}}</strong></td>
+                            <td>{{belanja1}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>{{kodering2}}</strong></td>
+                            <td>{{belanja2}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>{{kodering3}}</strong></td>
+                            <td>{{belanja3}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>{{kodering4}}</strong></td>
+                            <td>{{belanja4}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tipe Usulan</strong></td>
+                            <td>{{tipe_anggaran}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-success card-outline">
+                <div class="card-header">
+                    <h5>JUDUL USULAN & JUMLAH ANGGARAN </h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td width="10%"><strong>Judul</strong></td>
+                            <td width="30&">{{ judul_pengajuan }}</td>
+                            <td width="15%"><strong>Jumlah Anggaran</strong></td>
+                            <td width="30%">{{ jumlah_anggaran }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-success card-outline">
+                <div class="card-header">
+                    <h3 class="card-title d-inline mt-2">LIST USULAN</h3>
+                    <span clas="float-right">
+                        {% if role == 3 %}
+                        <button id="btnTambahRincian" class="btn btn-primary btn-sm float-right" >
+                            <i class="fa fa-plus"></i>
+                        </button>
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="card-body">
+                    <table id="tableRincian" class="table table-bordered table-hover text-center">
+                        <thead>
+                            <tr>
+                                <th class="text-center align-middle" width="3%">No</th>
+                                <th class="text-center align-middle">Deksripsi</th>
+                                <th class="text-center align-middle">Koefisien</th>
+                                <th class="text-center align-middle">Satuan</th>
+                                <th class="text-center align-middle">Harga</th>
+                                <th class="text-center align-middle">PPN</th>
+                                <th class="text-center align-middle">Total</th>
+                                <th class="text-center align-middle">Telahaan</th>
+                                <th class="text-center align-middle">Rekomendasi</th>
+                                <th class="text-center align-middle">Status</th>
+                                <th class="text-center align-middle" width="7%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listRincian">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="tambahRincianModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">TAMBAH USULAN ANGGARAN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="deskripsi" class="form-control-label">Deskripsi*</label>
+                                <input type="text" name="deskripsi" id="deskripsi" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="deskripsi" class="form-control-label">Koefisien*</label>
+                            </div>
+                            <div class="row" id="inputKoefisien">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="indikator" class="form-control-label">Jumlah*</label>
+                                        <input type="number" min='0' name="jumlah1" id="jumlah1" value="0" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="indikator" class="form-control-label">Satuan Koefisien*</label>
+                                        <input type="text" name="satuan1" id="satuan1" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="indikator" class="form-control-label">Jumlah</label>
+                                        <input type="number" min='0' name="jumlah2" disabled value="0" id="jumlah2" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="indikator" class="form-control-label">Satuan Koefisien</label>
+                                        <input type="text" name="satuan2" id="satuan2" disabled class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="indikator" class="form-control-label">Jumlah</label>
+                                        <input type="number" min='0' name="jumlah3" disabled value="0" id="jumlah3" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="indikator" class="form-control-label">Satuan Koefisien</label>
+                                        <input type="text" name="satuan3" id="satuan3" disabled class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="indikator" class="form-control-label">Jumlah</label>
+                                        <input type="number" min='0' name="jumlah4" value="0" disabled id="jumlah4" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="indikator" class="form-control-label">Satuan Koefisien</label>
+                                        <input type="text" name="satuan4" disabled id="satuan4" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="satuan" class="form-control-label">Satuan*</label>
+                                <input type="text" name="satuan" id="satuan" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="harga" class="form-control-label">Harga Satuan*</label>
+                                <input type="number" name="harga" id="harga" value="0" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="indikator" class="form-control-label">PPN</label>
+                                <input type="text" name="ppn" id="ppn" class="form-control" value="0" readonly required>
+                            </div>
+                            <div class="form-group">
+                                <label for="indikator" class="form-control-label">Total</label>
+                                <input type="number" name="total_rincian" id="total_rincian" value="0" class="form-control" readonly required>
+                                <input type="number" name="total_rincian_old" id="total_rincian_old" value="0" hidden class="form-control" readonly required>
+                            </div>
+                        <input type="text" name="id_rincian" id="id_rincian" hidden>
+                        <input type="text" name="operation_rincian" id="operation_rincian" hidden>
+                        <input type="text" id="id_tipe_belanja" value="{{id_tipe_belanja}}" hidden>
+                        <input type="text" id="id_kegiatan_tipe_belanja" value="{{id_kegiatan_tipe_belanja}}" hidden>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="button" id="btnTambahRincianModal" class="btn btn-warning" value="Tambah">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="rekomendasiRincianModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Berikan Rekomendasi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="telaahan" class="form-control-label">Rekomendasi</label>
+                                <input type="text" name="rekomendasi_form" id="rekomendasi_form" class="form-control" required>
+                            </div>
+                        </div>
+                        <input type="text" name="id_rincian_rekomendasi" id="id_rincian_rekomendasi" hidden>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="button" id="btnTambahRekomendasiRincianModal" class="btn btn-success" value="Tambah">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="telaahanRincianModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Berikan Terlaahan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="telaahan" class="form-control-label">Telaahan</label>
+                                <input type="text" name="telaahan_form" id="telaahan_form" class="form-control" required>
+                            </div>
+                        </div>
+                        <input type="text" name="id_rincian_telaahan" id="id_rincian_telaahan" hidden>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="button" id="btnTambahTelaahanRincianModal" class="btn btn-success" value="Tambah">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- /.content -->
+{% endblock %}
+{% block js %}
+<script src="{{base_url}}assets/action/rincian.js"></script>
+{% endblock %}

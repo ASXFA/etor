@@ -29,13 +29,14 @@ class Role extends CI_Controller {
     
     public function roleLists()
     {
+        $this->load->model('model_users');
         $list = $this->model_role->make_datatables();
         $data = array();
         $no = 1;
         foreach($list as $row):
             $sub_data = array();
             $sub_data[] = $no;
-            $sub_data[] = $row->nama;
+            $sub_data[] = $row->nama_role;
             $sub_data[] = $row->created_by;
             if ($row->id > 3) {
                 $sub_data[] = "<button type='button' name='edit' class='btn btn-warning btn-sm mr-2 update' id='".$row->id."'> Edit </button><button type='button' name='delete' class='btn btn-danger btn-sm delete' id='".$row->id."'> Delete </button>";
@@ -61,7 +62,7 @@ class Role extends CI_Controller {
         $role = $this->model_role->getById($id)->row();
         $output = array();
         $output['id'] = $role->id;
-        $output['nama'] = $role->nama;
+        $output['nama'] = $role->nama_role;
         echo json_encode($output);
     }
 
@@ -70,7 +71,7 @@ class Role extends CI_Controller {
         if ($this->role == 2) {
             $role = $this->model_role->getById(3)->result();
         }else if($this->role == 1){
-            $role = $this->model_role->getAll()->result();
+            $role = $this->model_role->getAll();
         }
         echo json_encode($role);
     }
@@ -80,14 +81,14 @@ class Role extends CI_Controller {
         $operation = $this->input->post('operation');
         if ($operation == 'Add') {
             $data = array(
-                'nama' => $this->input->post('nama'),
+                'nama_role' => $this->input->post('nama'),
                 'created_by' => $this->nama
             );
             $proccess = $this->model_role->addRole($data);
         }else if($operation == 'Edit'){
             $id = $this->input->post('role_id');
             $data = array(
-                'nama' => $this->input->post('nama'),
+                'nama_role' => $this->input->post('nama'),
                 'updated_at' => date('Y-m-d H:i:s'),
                 'updated_by' => $this->nama
             );

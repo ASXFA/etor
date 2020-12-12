@@ -18,44 +18,78 @@
         <link rel="stylesheet" href="{{base_url}}assets//dist/css/adminlte.min.css">
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <style>
+            .login-box{
+                width: 100%;
+                height: 100%;
+            }
+            .login-page{
+                background-image: url('../../../etor/assets/img/vfv.png') !important;
+                background-size:cover !important;
+            }
+            .overlay{
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+            .card{
+                box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.3);
+            }
+            .head{
+                opacity: 0;
+            }
+            .form{
+                margin-top: 170px;
+            }
+        </style>
     </head>
-    <body class="hold-transition login-page">
-        <div class="login-box">
-            <div class="login-logo">
-                Login Page
-            </div>
-            <!-- /.login-logo -->
-            <div class="card">
-                <div class="card-body login-card-body">
-                    <p class="login-box-msg">Login untuk masuk ke aplikasi</p>
-
-                    <form id="formLogin" action="{{base_url}}action_login" method="post">
-                        <div class="input-group mb-3">
-                            <input type="text" id="nip" class="form-control" name="nip" placeholder="NIP">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                <span class="fas fa-id-card"></span>
+    <body class="hold-transition login-page bg-success">
+        <div class="overlay">
+            <div class="container">
+                <div class="login-box">
+                    <div class="login-logo text-white">
+                        <p class="head">Login </p>
+                    </div>
+                    <!-- /.login-logo -->
+                    <div class="card">
+                        <div class="card-body login-card-body">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <img src="{{base_url}}assets/img/logo/logo.png" alt="" class="img-fluid">
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="form">
+                                        <h3 class="text-bold text-center mb-5">LOGIN</h3>
+        
+                                    <form id="formLogin" method="post">
+                                        <div class="input-group mb-4">
+                                            <input type="text" id="nip" class="form-control" name="nip" placeholder="NIP" required>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                <span class="fas fa-id-card"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-4">
+                                            <input type="password" id="pass" class="form-control" name="pass" placeholder="Password" required>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-lock"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="button" id="btnLogin" class="btn btn-success btn-block">Sign In</button>
+                                        </div>
+                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="password" id="pass" class="form-control" name="pass" placeholder="Password">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <!-- /.col -->
-                            <div class="col-4">
-                                <button type="submit" id="btnLogin" class="btn btn-primary btn-block">Sign In</button>
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                    </form>
+                        <!-- /.login-card-body -->
+                    </div>
                 </div>
-                <!-- /.login-card-body -->
             </div>
         </div>
         <!-- /.login-box -->
@@ -66,6 +100,6 @@
     <script src="{{base_url}}assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{base_url}}assets/dist/js/adminlte.min.js"></script>
-
+    <script src="{{base_url}}assets/action/login.js"></script>
     </body>
 </html>

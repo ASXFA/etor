@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+    *{
+        font-size: 12px;
+    }
+	.table1 {
+        width: 100%;
+        height: 100%;
+        font-family: sans-serif;
+        color: black;
+        border-collapse: collapse;
+        margin-bottom: 5px;
+    }
+
+    .table-borderless{
+        width: 100%;
+        height: 100%;
+        font-family: sans-serif;
+        border-collapse: collapse;   
+        margin-bottom: 5px;
+    }
+
+    .table-borderless, th, td {
+        padding: 8px 20px;
+        font-size: 12px;
+    }
+    
+    .table1 th, .table1 td {
+        border: 1px solid black;
+        padding: 8px 20px;
+    }
+
+    .text-center{
+        text-align: center;
+    }
+    .text-left{
+        text-align: left;
+    }
+
+    .font-weight-normal{
+        font-weight: normal;
+    }
+    </style>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+    <title>Document</title>
+</head>
+    <body>
+        <table class="table1">
+            <thead>
+                <tr>
+                    <th width="80%">
+                        <h3>KERANGKA ACUAN KERJA<br>
+                        BIRO UMUM SETDA PEMPROV JABAR</h3>
+                    </th>
+                    <th width="20%" rowspan="2">
+                        <img src="{{base_url}}assets/img/logo/logo.png" width="20%" alt="">
+                    </th>
+                </tr>
+                <tr>
+                    <th class="font-weight-normal">Sekertariat Daerah Pemerintah Provinsi Jawa Barat Tahun Anggaran 2021</th>
+                </tr>
+            </thead>
+        </table>
+        <table class="table-borderless">
+            <tr>
+                <td width="25%">Unit Organisasi </td>
+                <td width="5%"> : </td>
+                <td width="70%"> {{biro}} </td>
+            </tr>
+            <tr>
+                <td width="25%">Bagian</td>
+                <td width="5%"> : </td>
+                <td width="70%"> {{bagian}} </td>
+            </tr>
+            <tr>
+                <td width="25%">Sub Bagian</td>
+                <td width="5%"> : </td>
+                <td width="70%"> {{sub_bagian}} </td>
+            </tr>
+            <tr>
+                <td width="25%">Program</td>
+                <td width="5%"> : </td>
+                <td width="70%"> {{program}} </td>
+            </tr>
+            <tr>
+                <td width="25%">Kegiatan</td>
+                <td width="5%"> : </td>
+                <td width="70%"> {{kegiatan}} </td>
+            </tr>
+            <tr>
+                <td width="25%">Sub Kegiatan</td>
+                <td width="5%"> : </td>
+                <td width="70%"> {{sub_kegiatan}} </td>
+            </tr>
+            <tr>
+                <td width="25%" class="text-left">Sasaran</td>
+                <td width="5%"> : </td>
+                <td width="70%"> {{sasaran}} </td>
+            </tr>
+            <tr>
+                <td width="25%">Lokasi Kegiatan</td>
+                <td width="5%"> : </td>
+                <td width="70%"> {{lokasi}} </td>
+            </tr>
+            <tr>
+                <td width="25%">Jumlah 2021</td>
+                <td width="5%"> : </td>
+                <td width="70%"> {{anggaran}} </td>
+            </tr>
+        </table>
+        <table class="table1">
+            <thead>
+                <tr>
+                    <th colspan="3" class="font-weight-normal">Indikator & Tolak Ukur Kinerja Belanja Langsung</th>
+                </tr>
+                <tr>
+                    <th class="font-weight-normal">Indikator</th>
+                    <th class="font-weight-normal">Tolak Ukur Kinerja</th>
+                    <th class="font-weight-normal">Target Kinerja</th>
+                </tr>
+            </thead>
+            <!-- <input type="text" id="id_kegiatan" value="{{id_kegiatan}}" hidden> -->
+            <tbody>
+                {% for item in indikator %}
+                <tr>
+                    <td>{{item.indikator}}</td>
+                    <td>{{item.tolak_ukur_kinerja}}</td>
+                    <td>{{item.target_kinerja}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <table class="table1">
+            <thead>
+                <tr>
+                    <th colspan="9">
+                        <h3 class="font-weight-normal">
+                            Rincian Kerja Anggaran Belanja Langsung <br>
+                            Menurut Program dan Per Kegiatan Satuan Kerja Perangkat Daerah
+                        </h3>
+                    </th>
+                </tr>
+                <tr>
+                    <th rowspan="2" width="20%">Kode Rekening</th>
+                    <th rowspan="2" width="18%">Uraian</th>
+                    <th colspan="4">Rincian Perhitungan</th>
+                    <th rowspan="2" width="10%">Telaahan</th>
+                    <th rowspan="2" width="10%">Rekomendasi</th>
+                    <th rowspan="2" width="15%">Jumlah</th>
+                </tr>
+                <tr>
+                    <th>Koefisien</th>
+                    <th width="10%">Satuan</th>
+                    <th width="10%">Harga</th>
+                    <th width="7%">PPN</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <strong>5</strong>
+                    </td>
+                    <td colspan="7">
+                        <strong>BELANJA DAERAH</strong>
+                    </td>
+                    <td><strong>{{anggaran}}</strong></td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>5.1</strong>
+                    </td>
+                    <td colspan="7">
+                        <strong>BELANJA OPERASI</strong>
+                    </td>
+                    <td><strong>{{anggaran}}</strong></td>
+                </tr>
+                {% for a in belanja1 %}
+                <tr>
+                    <td><strong>{{a.kodering}}</strong></td>
+                    <td colspan="7"><strong>{{a.uraian}}</strong></td>
+                    <td><strong>Rp.{{a.total|number_format}}</strong></td>
+                </tr>
+                    {%for b in belanja2 %}
+                    {% if b.id == a.id %}
+                    <tr>
+                        <td><strong>{{b.kodering}}</strong></td>
+                        <td colspan="7"><strong>{{b.uraian}}</strong></td>
+                        <td><strong>Rp.{{b.total|number_format}}</strong></td>
+                    </tr>
+                        {% for c in belanja3 %}
+                        {% if c.id == b.id %}
+                        <tr>
+                            <td><strong>{{c.kodering}}</strong></td>
+                            <td colspan="7"><strong>{{c.uraian}}</strong></td>
+                           <td><strong>Rp.{{c.total|number_format}}</strong></td>
+                        </tr>
+                            {% for d in belanja4 %}
+                            {% if d.id == c.id %}
+                            <tr>
+                                <td><strong>{{d.kodering}}</strong></td>
+                                <td colspan="7"><strong>{{d.uraian}}</strong></td>
+                                <td><strong>Rp.{{d.total|number_format}}</strong></td>
+                            </tr>
+                                {% for j in judul %}
+                                {% if j.id == d.id %}
+                                <tr>
+                                    <td></td>
+                                    <td colspan="7"><strong>:: {{j.judul}}</strong></td>
+                                    <td><strong>Rp.{{j.total|number_format}}</strong></td>
+                                </tr>
+                                    {% for r in rincian %}
+                                    {% if r.id_tipe_belanja == d.id %}
+                                    <tr>
+                                        <td></td>
+                                        <td>{{r.deskripsi}}</td>
+                                        <td>
+                                            {% for k in koefisien %}
+                                            {% if k.id_rincian_anggaran == r.id %}
+                                            {{k.jumlah}} {{k.type}} x
+                                            {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                        <td>{{r.satuan}}</td>
+                                        <td>{{r.harga|number_format}}</td>
+                                        <td>{{r.ppn}}</td>
+                                        <td>{{r.telaahan}}</td>
+                                        <td>{{r.rekomendasi}}</td>
+                                        <td>Rp.{{r.jumlah_rincian|number_format}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <script src="{{base_url}}assets/plugins/jquery/jquery.min.js"></script>
+        <script src="{{base_url}}assets/action/printKegiatan.js"></script>
+    </body>
+</html>

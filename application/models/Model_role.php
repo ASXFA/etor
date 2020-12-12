@@ -2,15 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Model_role extends CI_Model{
     var $table = 'role_permission';
-    var $select_column = array('id','nama','created_by');
-    var $order_column = array(null,'nama',null);
+    var $select_column = array('id','nama_role','created_by');
+    var $order_column = array(null,'nama_role',null);
 
     function make_query()
     {
         $this->db->select($this->select_column);
         $this->db->from($this->table);
         if (isset($_POST['search']['value'])) {
-            $this->db->or_like('nama',$_POST['search']['value']);
+            $this->db->or_like('nama_role',$_POST['search']['value']);
         }
         if (isset($_POST['order'])) {
             $this->db->order_by($this->order_column[$_POST['order']['0']['column']],$_POST['order']['0']['dir']);

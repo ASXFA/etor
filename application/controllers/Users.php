@@ -43,7 +43,7 @@ class Users extends CI_Controller {
                         $sub_data[] = $row->nip;
                         $sub_data[] = $row->nama;
                         $role = $this->model_role->getById($row->role)->row();
-                        $sub_data[] = $role->nama;
+                        $sub_data[] = $role->nama_role;
                         if ($row->status == 1) {
                             $sub_data[] = "<span class='badge badge-success p-2'> Aktif </span>";
                         }else{
@@ -63,7 +63,7 @@ class Users extends CI_Controller {
                         $sub_data[] = $row->nip;
                         $sub_data[] = $row->nama;
                         $role = $this->model_role->getById($row->role)->row();
-                        $sub_data[] = $role->nama;
+                        $sub_data[] = $role->nama_role;
                         if ($row->status == 1) {
                             $sub_data[] = "<span class='badge badge-success p-2'> Aktif </span>";
                         }else{

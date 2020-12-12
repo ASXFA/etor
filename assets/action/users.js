@@ -1,7 +1,9 @@
 $(function(){
+    $('#pengaturan').attr('class','nav-item has-treeview menu-open');
+    $('#users-page').attr('class','nav-link active bg-success');
     $('#tableUsers').DataTable({
         "processing": true,
-        "serverSide": true,
+        "serverSide": true, 
         "order":[],
         "ajax":{
             url:"userLists",
@@ -72,7 +74,7 @@ $(function(){
             var html='';
             var i=0;
             for(i; i<result.length; i++){
-                html += "<option value='"+result[i].id+"'>"+result[i].nama+"</option>";
+                html += "<option value='"+result[i].id+"'>"+result[i].nama_role+"</option>";
             }
             $('#role_user').html(html);
         }

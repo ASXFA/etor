@@ -2,8 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Model_kegiatan extends CI_Model{
     var $table = 'kegiatan';
-    var $select_column = array('id','kegiatan','sub_kegiatan','tanggal','anggaran','nama_pengusul','created_by');
-    var $order_column = array(null,'kegiatan','sub_kegiatan','tanggal','anggaran','nama_pengusul',null,null);
+    var $select_column = array('id','kegiatan','sub_kegiatan','tanggal','anggaran','nama_pengusul','nama_pemegang_kegiatan','created_by');
+    var $order_column = array(null,'kegiatan','sub_kegiatan','tanggal','anggaran','nama_pengusul','nama_pemegang_kegiatan',null,null);
 
     function make_query()
     {

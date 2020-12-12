@@ -1,4 +1,6 @@
 $(function(){
+    $('#pengaturan').attr('class','nav-link menu-open');
+    $('#role-page').attr('class','nav-link active');
     $('#tableRole').DataTable({
         "processing": true,
         "serverSide": true,
