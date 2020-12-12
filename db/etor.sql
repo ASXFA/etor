@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 10 Des 2020 pada 07.32
+-- Waktu pembuatan: 12 Des 2020 pada 14.16
 -- Versi server: 5.7.24
 -- Versi PHP: 7.2.19
 
@@ -3447,7 +3447,7 @@ CREATE TABLE `kegiatan` (
 INSERT INTO `kegiatan` (`id`, `biro`, `bagian`, `sub_bagian`, `lokasi`, `program`, `kegiatan`, `sub_kegiatan`, `anggaran`, `tanggal`, `sifat_kegiatan`, `nama_pengusul`, `nip`, `nama_pemegang_kegiatan`, `latar_belakang`, `maksud_tujuan`, `sasaran`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
 (2, 'asdasd', 3, 9, 'Bandung', 'asdasd', 'Sesuatu', 'dasdasd', 0, '2020-11-26', 'sadsadasdsa', 4, '3242135131231241', 6, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc', 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham', '2020-11-26 10:56:05', 'Testing Users', '2020-11-27 08:19:20', 'Testing Users'),
 (3, 'qweqwe', 1, 2, 'Bandung', 'qwqewq', 'Sesuatu', 'wqeqw', 0, '2020-11-27', 'PENTING', 5, '3273421238472838', NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', '2020-11-27 08:31:21', 'Testing Users', NULL, NULL),
-(5, 'Biro Umum', 2, 5, 'Bandung', 'as', 'Ini adalah text dummy', 'Ini adalah text Dummy', 11750000, '2020-11-30', '', 4, '3242135131231241', 7, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model', '2020-11-30 03:14:31', 'Testing Users', NULL, NULL);
+(5, 'Biro Umum', 2, 5, 'Bandung', 'as', 'Ini adalah text dummy', 'Ini adalah text Dummy', 389225000, '2020-11-30', '', 4, '3242135131231241', 7, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model', '2020-11-30 03:14:31', 'Testing Users', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -3477,9 +3477,12 @@ CREATE TABLE `rincian_anggaran` (
 --
 
 INSERT INTO `rincian_anggaran` (`id`, `id_tipe_belanja`, `deskripsi`, `satuan`, `harga`, `ppn`, `jumlah_rincian`, `telaahan`, `rekomendasi`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(5, 1, 'Alat Tulis Kantor', 'Buah', 95000, 0, 4750000, NULL, NULL, 0, '2020-12-08 17:34:28', 'John', NULL, NULL),
-(7, 1, 'Refill Toner (Color & Mono) Spesifikasi : none', 'Unit', 1000000, 0, 7000000, NULL, NULL, 0, '2020-12-08 17:36:31', 'John', NULL, NULL),
-(9, 2, 'Monitor ', 'Orang', 800000, 0, 3200000, '10 unit', '2 unit', 0, '2020-12-09 15:22:45', 'John', '2020-12-10 04:38:16', 'Testing Users');
+(9, 2, 'Monitor ', 'Orang', 800000, 0, 3200000, '10 unit', '2 unit', 0, '2020-12-09 15:22:45', 'John', '2020-12-10 04:38:16', 'Testing Users'),
+(10, 1, 'Alat Tulis Kantor. Spesifikasi : Pulpen Standard', 'Buah', 2500, 0, 375000, NULL, NULL, 0, '2020-12-11 09:29:22', 'John', NULL, NULL),
+(11, 1, 'Alat Tulis Kantor. Spesifikasi : Buku Notes', 'Buah', 1000, 0, 50000, NULL, NULL, 0, '2020-12-11 09:30:57', 'John', NULL, NULL),
+(12, 1, 'Kertas HVS. Spesifikasi: Ukuran A4 80 gram', 'Rim', 40000, 0, 800000, NULL, NULL, 0, '2020-12-11 09:33:09', 'John', NULL, NULL),
+(13, 4, 'Kursi Kantor', 'Buah', 750000, 0, 3000000, '5 Buah', '4 Buah', 1, '2020-12-11 09:37:54', 'John', '2020-12-11 10:16:51', 'Daniel Edward'),
+(14, 5, 'Gaji Pokok ASN. Spesifikasi : per 1Tahun', 'Orang', 3850000, 0, 385000000, NULL, NULL, 1, '2020-12-11 09:52:27', 'John', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -3506,7 +3509,13 @@ INSERT INTO `rincian_anggaran_koefisien` (`id`, `id_rincian_anggaran`, `jumlah`,
 (57, 9, 2, 'Kali'),
 (59, 6, 70, 'Rim'),
 (60, 8, 80, 'Orang'),
-(61, 8, 4, 'Kali');
+(61, 8, 4, 'Kali'),
+(62, 10, 30, 'Buah'),
+(63, 10, 5, 'Unit'),
+(64, 11, 50, 'Buah'),
+(65, 12, 20, 'Rim'),
+(67, 14, 100, 'Orang'),
+(75, 13, 4, 'Buah');
 
 -- --------------------------------------------------------
 
@@ -3590,7 +3599,9 @@ CREATE TABLE `tipe_belanja` (
 --
 
 INSERT INTO `tipe_belanja` (`id`, `id_kegiatan`, `belanja1`, `belanja2`, `belanja3`, `belanja4`, `judul_pengajuan`, `tipe_anggaran`, `jumlah_anggaran`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, 5, '5.1.02.0.0.00', '5.1.02.01.0.00', '5.1.02.01.01.00', '5.1.02.01.01.0024', 'ATK Penunjang Kegiatan', 'Penyedia Paket', 11750000, '2020-12-07 09:55:57', 'john', NULL, NULL);
+(1, 5, '5.1.02.0.0.00', '5.1.02.01.0.00', '5.1.02.01.01.00', '5.1.02.01.01.0024', 'ATK Penunjang Kegiatan', 'Penyedia Paket', 1225000, '2020-12-07 09:55:57', 'john', NULL, NULL),
+(4, 5, '5.2.02.0.0.00', '5.2.02.05.0.00', '5.2.02.05.01.00', '5.2.02.05.01.005', 'Alat Kantor Penunjang Kegiatan', 'Penyedia Paket', 3000000, '2020-12-11 09:37:18', 'John', NULL, NULL),
+(5, 5, '5.1.01.0.0.00', '5.1.01.01.0.00', '5.1.01.01.01.00', '5.1.01.01.01.001', 'Gaji Pokok ASN', 'Penyedia Paket', 385000000, '2020-12-11 09:50:37', 'John', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -3709,13 +3720,13 @@ ALTER TABLE `kegiatan`
 -- AUTO_INCREMENT untuk tabel `rincian_anggaran`
 --
 ALTER TABLE `rincian_anggaran`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `rincian_anggaran_koefisien`
 --
 ALTER TABLE `rincian_anggaran_koefisien`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT untuk tabel `role_permission`
@@ -3733,7 +3744,7 @@ ALTER TABLE `sub_bagian`
 -- AUTO_INCREMENT untuk tabel `tipe_belanja`
 --
 ALTER TABLE `tipe_belanja`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
