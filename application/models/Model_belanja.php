@@ -5,14 +5,27 @@ class Model_belanja extends CI_Model{
     // var $select_column = array('id','nama_role','created_by');
     // var $order_column = array(null,'nama_role',null);
 
-    public function getJ()
+    public function getK()
     {
-        $this->db->select('*');
-        $this->db->from($this->table);
-        $this->db->like('URAIAN_90_M','Belanja Pegawai');
-        $this->db->or_like('URAIAN_90_M','Belanja Barang dan Jasa');
-        $this->db->or_like('URAIAN_90_M','Belanja Modal Peralatan dan Mesin');
-        $query = $this->db->get();
+        $this->db->where('A','5');
+        $this->db->where('K !=','');
+        $this->db->where('J','');
+        $this->db->where('O','');
+        $this->db->where('RO','');
+        $this->db->where('SRO','');
+        $query = $this->db->get($this->table);
+        return $query->result();
+    }
+
+    public function getJ($K)
+    {
+        $this->db->where('A','5');
+        $this->db->where('K',$K);
+        $this->db->where('J !=','');
+        $this->db->where('O','');
+        $this->db->where('RO','');
+        $this->db->where('SRO','');
+        $query = $this->db->get($this->table);
         return $query->result();
     }
 

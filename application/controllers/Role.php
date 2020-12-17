@@ -13,11 +13,13 @@ class Role extends CI_Controller {
         $this->nama = $this->session->userdata('nama');
         $this->nip = $this->session->userdata('nip');
         $this->role = $this->session->userdata('role');
+        $this->nama_role = $this->session->userdata('nama_role');
         $this->content = array(
             'base_url' => base_url(),
             'nama' => $this->nama,
             'nip' => $this->nip,
-            'role' => $this->role
+            'role' => $this->role,
+            'nama_role' => $this->nama_role,
         );
         $this->load->model('model_role');
     }

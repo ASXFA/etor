@@ -26,72 +26,74 @@
                     <h3 class="card-title d-inline mt-2">INFORMASI KEGIATAN</h3>
                 </div>
                 <div class="card-body">
-                    <table class="table table-borderless">
-                        <input type="text" id="id_kegiatan_info" value="{{id}}" hidden>
-                        <tr>
-                            <td width="15%"><strong>Biro</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td width="25%">{{biro}}</td>
-                            <td width="15%"><strong>Anggaran Sub Kegiatan</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td width="25%">{{anggaran}}</td>
-                        </tr>
-                        <tr>
-                            <td width="15%"><strong>Bagian</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td width="25%">{{bagian}}</td>
-                            <td width="15%"><strong>Tanggal Pengusulan</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td width="25%">{{tanggal}}</td>
-                        </tr>
-                        <tr>
-                            <td width="15%"><strong>Sub Bagian</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td width="25%">{{sub_bagian}}</td>
-                            <td width="15%"><strong>Nama Pengusul</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td width="25%">{{nama_pengusul}}</td>
-                        </tr>
-                        <tr>
-                            <td width="15%"><strong>Lokasi Kegiatan</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td width="25%">{{lokasi}}</td>
-                            <td width="15%"><strong>NIP</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td width="25%">{{nip_kegiatan}}</td>
-                        </tr>
-                        <tr>
-                            <td width="15%"><strong>Program</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td width="25%">{{program}}</td>
-                            <td width="15%"><strong>Nama Pemegang Kegiatan</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td width="25%">{{nama_pemegang_kegiatan}}</td>
-                        </tr>
-                        <tr>
-                            <td width="15%"><strong>Kegiatan</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td width="25%">{{kegiatan}}</td>
-                            <td width="15%"><strong>Sub Kegiatan</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td width="25%">{{sub_kegiatan}}</td>
-                        </tr>
-                        <tr>
-                            <td width="15%"><strong>Latar Belakang</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td colspan="4" class="text-justify">{{latar_belakang}}</td>
-                        </tr>
-                        <tr>
-                            <td width="15%"><strong>Maksud dan Tujuan</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td colspan="4" class="text-justify">{{maksud_tujuan}}</td>
-                        </tr>
-                        <tr>
-                            <td width="15%"><strong>Sasaran</strong></td>
-                            <td width="5%"><strong>:</strong></td>
-                            <td colspan="4" class="text-justify">{{sasaran}}</td>
-                        </tr>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-borderless">
+                            <input type="text" id="id_kegiatan_info" value="{{id}}" hidden>
+                            <tr>
+                                <td width="15%"><strong>Biro</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td width="25%">{{biro}}</td>
+                                <td width="15%"><strong>Anggaran Sub Kegiatan</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td width="25%">{{anggaran}}</td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><strong>Bagian</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td width="25%">{{bagian}}</td>
+                                <td width="15%"><strong>Tanggal Pengusulan</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td width="25%">{{tanggal}}</td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><strong>Sub Bagian</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td width="25%">{{sub_bagian}}</td>
+                                <td width="15%"><strong>Nama Pengusul</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td width="25%">{{nama_pengusul}}</td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><strong>Lokasi Kegiatan</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td width="25%">{{lokasi}}</td>
+                                <td width="15%"><strong>NIP</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td width="25%">{{nip_kegiatan}}</td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><strong>Program</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td width="25%">{{program}}</td>
+                                <td width="15%"><strong>Nama Pemegang Kegiatan</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td width="25%">{{nama_pemegang_kegiatan}}</td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><strong>Kegiatan</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td width="25%">{{kegiatan}}</td>
+                                <td width="15%"><strong>Sub Kegiatan</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td width="25%">{{sub_kegiatan}}</td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><strong>Latar Belakang</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td colspan="4" class="text-justify">{{latar_belakang}}</td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><strong>Maksud dan Tujuan</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td colspan="4" class="text-justify">{{maksud_tujuan}}</td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><strong>Sasaran</strong></td>
+                                <td width="5%"><strong>:</strong></td>
+                                <td colspan="4" class="text-justify">{{sasaran}}</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -104,22 +106,24 @@
                     </span>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th colspan="4" class="text-center">Indikator & Tolak Ukur Kinerja Belanja Langsung</th>
-                            </tr>
-                            <tr>
-                                <th>Indikator</th>
-                                <th>Tolak Ukur Kinerja</th>
-                                <th>Target Kinerja</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbodyIndikator">
-
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th colspan="4" class="text-center">Indikator & Tolak Ukur Kinerja Belanja Langsung</th>
+                                </tr>
+                                <tr>
+                                    <th>Indikator</th>
+                                    <th>Tolak Ukur Kinerja</th>
+                                    <th>Target Kinerja</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyIndikator">
+    
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -167,26 +171,28 @@
                     {% endif %}
                 </div>
                 <div class="card-body">
-                    <table id="tableTipeBelanja" class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th rowspan="2" class="text-center align-middle">No</th>
-                                <th colspan="4" class="text-center align-middle">Tipe Belanja</th>
-                                <th rowspan="2" class="text-center align-middle">Tipe Anggaran</th>
-                                <th rowspan="2" class="text-center align-middle">Jumlah Anggaran</th>
-                                <th rowspan="2" class="text-center align-middle">Created By</th>
-                                <th rowspan="2" class="text-center align-middle">Action</th>
-                            </tr>
-                            <tr>
-                                <th>#1</th>
-                                <th>#2</th>
-                                <th>#3</th>
-                                <th>#4</th>
-                            </tr>
-                        </thead>
-                        <tbody id="listKegiatan">
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table id="tableTipeBelanja" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" class="text-center align-middle">No</th>
+                                    <th colspan="4" class="text-center align-middle">Tipe Belanja</th>
+                                    <th rowspan="2" class="text-center align-middle">Tipe Anggaran</th>
+                                    <th rowspan="2" class="text-center align-middle">Jumlah Anggaran</th>
+                                    <th rowspan="2" class="text-center align-middle">Created By</th>
+                                    <th rowspan="2" class="text-center align-middle">Action</th>
+                                </tr>
+                                <tr>
+                                    <th>#1</th>
+                                    <th>#2</th>
+                                    <th>#3</th>
+                                    <th>#4</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listKegiatan">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -344,6 +350,10 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="indikator" class="form-control-label">Pilih Tipe Belanja</label>
+                                <select name="tipe_belanja-1" id="tipe_belanja-1" class="form-control" required></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="indikator" class="form-control-label">Pilih Tipe Belanja</label>
                                 <select name="tipe_belanja" id="tipe_belanja" class="form-control" required></select>
                             </div>
                             <div class="form-group">
@@ -366,7 +376,7 @@
                                 <label for="indikator" class="form-control-label">Tipe Anggaran</label>
                                 <select name="tipe_anggaran" id="tipe_anggaran" class="form-control" required>
                                     <option>PILIH</option>
-                                    <option value="Penyedia Paket">Penyedia Paket</option>
+                                    <option value="Penyedia">Penyedia</option>
                                     <option value="Swakelola">Swakelola</option>
                                 </select>
                             </div>

@@ -43,39 +43,39 @@ $(function(){
         ],
     });
 
-    $(document).on('click','.printAll',function(){
-        var id = $(this).attr('id');
-        loading();
-        $.ajax({
-            method:'POST',
-            dataType:'JSON',
-            data:{id_kegiatan:id},
-            url:'printKegiatan',
-            success:function(result){
+    // $(document).on('click','.printAll',function(){
+    //     var id = $(this).attr('id');
+    //     loading();
+    //     $.ajax({
+    //         method:'POST',
+    //         dataType:'JSON',
+    //         data:{id_kegiatan:id},
+    //         url:'printKegiatan',
+    //         success:function(result){
                 
-            }
-        })
-    })
+    //         }
+    //     })
+    // })
 
-    function loading()
-    {
-        let timerInterval
-        Swal.fire({
-        title: 'Harap Tunggu Sebentar,',
-        html: 'File akan langsung ter Download',
-        timer: 5000,
-        timerProgressBar: true,
-        willOpen: () => {
-            Swal.showLoading()
-        },
-        willClose: () => {
-            clearInterval(timerInterval)
-        }
-        }).then((result) => {
-        /* Read more about handling dismissals below */
-            if (result.dismiss === Swal.DismissReason.timer) {
+    // function loading()
+    // {
+    //     let timerInterval
+    //     Swal.fire({
+    //     title: 'Harap Tunggu Sebentar,',
+    //     html: 'File akan langsung ter Download',
+    //     timer: 5000,
+    //     timerProgressBar: true,
+    //     willOpen: () => {
+    //         Swal.showLoading()
+    //     },
+    //     willClose: () => {
+    //         clearInterval(timerInterval)
+    //     }
+    //     }).then((result) => {
+    //     /* Read more about handling dismissals below */
+    //         if (result.dismiss === Swal.DismissReason.timer) {
                 
-            }
-        })
-    }
+    //         }
+    //     })
+    // }
 })

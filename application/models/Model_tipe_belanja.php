@@ -61,9 +61,9 @@ class Model_tipe_belanja extends CI_Model{
         return $query->row();
     }
 
-    public function getByKegiatanId()
+    public function getByKegiatanId($id_kegiatan)
     {   
-        $this->db->where('id_kegiatan',5);
+        $this->db->where('id_kegiatan',$id_kegiatan);
         $this->db->order_by('belanja1 ASC, belanja2 ASC, belanja3 ASC, belanja4 ASC');
         $query = $this->db->get($this->table);
         return $query->result();

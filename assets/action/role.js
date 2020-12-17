@@ -24,6 +24,14 @@ $(function(){
         timer: 3000
     });
 
+    $('#btnAddRoleModal').click(function(){
+        $('#addRoleModal').modal('show');
+        $('#role_id').val('');
+        $('#action').val('Add');
+        $('#operation').val('Add');
+        $('#nama_role').val('');
+    })
+
     $('#formRole').submit(function(e){
         e.preventDefault();
         var nama = $('#nama_role').val();

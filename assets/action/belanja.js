@@ -36,15 +36,35 @@ $(function(){
         $('#tipe_anggaran').prop('selected',function(){
             return this.defaultSelected;
         });
-        getJ(); 
+        getK(); 
     })
     
-    function getJ()
+    function getK()
     {
         $.ajax({
             method:'GET',
             dataType:'JSON',
             async:'FALSE',
+            url:'../getK',
+            success:function(result){
+                var html='';
+                var i=0;
+                html += "<option hidden>PILIH</option>";
+                for(i; i<result.length; i++){
+                    html += "<option value='"+result[i].ALL_90_M+"'>"+result[i].URAIAN_90_M+"</option>";
+                }
+                $('#tipe_belanja-1').html(html);
+            }
+        })
+    }
+
+    function getJ(K)
+    {
+        $.ajax({
+            method:'POST',
+            dataType:'JSON',
+            async:'FALSE',
+            data:{K:K},
             url:'../getJ',
             success:function(result){
                 var html='';
@@ -185,6 +205,11 @@ $(function(){
                 $('#tipe_belanja_sub_sub_sub').val(result.kodering4).trigger('change');
             }
         })
+    })
+    $('#tipe_belanja-1').change(function(){
+        var kode = $('#tipe_belanja-1').val();
+        var K = kode.slice(2,3);
+        getJ(K);
     })
     $('#tipe_belanja').change(function(){
         var kode = $('#tipe_belanja').val();

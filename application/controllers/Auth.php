@@ -30,33 +30,42 @@ class Auth extends CI_Controller {
             $user = $cek->row();
             $pass = $this->input->post('pass');
             if (password_verify($pass,$user->password)) {
-                $session = array(
-                    'isLogin' => 1,
-                    'id' => $user->id,
-                    'nip' => $user->nip,
-                    'nama' => $user->nama,
-                    'role' => $user->role,
-                    'status' => $user->status
-                );
-                $role = $user->role;
-                $this->session->set_userdata($session);
-                if ($role == 1) {
-                    // $this->session->set_flashdata('msgLogin','Halo, Selamat Datang ');
-                    $pesan['condition'] = 2;
-                    $pesan['pesan'] = "Login Berhasil !";
-                    $pesan['url'] = 'semuaAnggaranKegiatan';
-                    echo json_encode($pesan);
-                }else if($role == 2){
-                    // $this->session->set_flashdata('msgLogin','Halo, Selamat Datang ');
-                    $pesan['condition'] = 2;
-                    $pesan['pesan'] = "Login Berhasil !";
-                    $pesan['url'] = 'semuaAnggaranKegiatan';
-                    echo json_encode($pesan);
-                }else if($role == 3){
-                    // $this->session->set_flashdata('msgLogin','Halo, Selamat Datang ');
-                    $pesan['condition'] = 2;
-                    $pesan['pesan'] = "Login Berhasil !";
-                    $pesan['url'] = 'semuaAnggaranKegiatan';
+                if ($user->status == 1) {
+                    $this->load->model('model_role');
+                    $role = $this->model_role->getById($user->role)->row();
+                    $session = array(
+                        'isLogin' => 1,
+                        'id' => $user->id,
+                        'nip' => $user->nip,
+                        'nama' => $user->nama,
+                        'role' => $user->role,
+                        'nama_role' => $role->nama_role,
+                        'status' => $user->status
+                    );
+                    $role = $user->role;
+                    $this->session->set_userdata($session);
+                    if ($role == 1) {
+                        // $this->session->set_flashdata('msgLogin','Halo, Selamat Datang ');
+                        $pesan['condition'] = 2;
+                        $pesan['pesan'] = "Login Berhasil !";
+                        $pesan['url'] = 'semuaAnggaranKegiatan';
+                        echo json_encode($pesan);
+                    }else if($role == 2){
+                        // $this->session->set_flashdata('msgLogin','Halo, Selamat Datang ');
+                        $pesan['condition'] = 2;
+                        $pesan['pesan'] = "Login Berhasil !";
+                        $pesan['url'] = 'semuaAnggaranKegiatan';
+                        echo json_encode($pesan);
+                    }else if($role == 3){
+                        // $this->session->set_flashdata('msgLogin','Halo, Selamat Datang ');
+                        $pesan['condition'] = 2;
+                        $pesan['pesan'] = "Login Berhasil !";
+                        $pesan['url'] = 'semuaAnggaranKegiatan';
+                        echo json_encode($pesan);
+                    }
+                }else{
+                    $pesan['condition'] = 1;
+                    $pesan['pesan'] = "Login Gagal ! Akun anda Masih dinonaktifkan !";
                     echo json_encode($pesan);
                 }
             }else{

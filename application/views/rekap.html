@@ -1,0 +1,49 @@
+{% extends "template/layout.html" %} {% block content %}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Rekap Usulan Anggaran</h1>
+            </div>
+            <!-- <img src="{{base_url}}assets/img/form/header_etor.png" alt="" class="img-fluid"> -->
+            <!-- <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Role Permission</li>
+                </ol>
+            </div> -->
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title d-inline mt-2">Rekap Usulan Anggaran</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="tableRekap" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th width="5%">No</th>
+                        <th>Kegiatan</th>
+                        <th>Sub Kegiatan</th>
+                        <th>Kodering</th>
+                        <th>Jumlah Usulan Anggaran</th>
+                    </tr>
+                    </thead>
+                    <tbody id="listRekap">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.card -->
+
+</section>
+{% endblock %}
+{% block js %}
+<script src="{{base_url}}assets/action/rekap.js"></script>
+{% endblock %}

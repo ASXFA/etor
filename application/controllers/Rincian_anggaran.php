@@ -13,11 +13,13 @@ class Rincian_anggaran extends CI_Controller {
         $this->nama = $this->session->userdata('nama');
         $this->nip = $this->session->userdata('nip');
         $this->role = $this->session->userdata('role');
+        $this->nama_role = $this->session->userdata('nama_role');
         $this->content = array(
             'base_url' => base_url(),
             'nama' => $this->nama,
             'nip' => $this->nip,
-            'role' => $this->role
+            'role' => $this->role,
+            'nama_role' => $this->nama_role,
         );
         $this->load->model('model_rincian_anggaran');
     }
@@ -51,8 +53,16 @@ class Rincian_anggaran extends CI_Controller {
                 $sub_data[] = 'Rp.'.number_format($row->harga);
                 $sub_data[] = $row->ppn.' %';
                 $sub_data[] = 'Rp.'.number_format($row->jumlah_rincian);
-                $sub_data[] = "<span class='text-danger font-weight-bold'>".$row->telaahan."</span>";
-                $sub_data[] = "<span class='text-danger font-weight-bold'>".$row->rekomendasi."</span>";
+                if ($row->telaahan == NULL) {
+                    $sub_data[] = '-';
+                }else{
+                    $sub_data[] = "<span class='text-danger font-weight-bold'>".$row->telaahan."</span>";
+                }
+                if ($row->rekomendasi == NULL) {
+                    $sub_data[] = '-';
+                }else{
+                    $sub_data[] = "<span class='text-danger font-weight-bold'>".$row->rekomendasi."</span>";
+                }
                 if ($row->status == 0) {
                     $sub_data[] = "<span class='badge badge-danger p-2'> Belum Disetujui</span>";
                 }else{
@@ -60,13 +70,13 @@ class Rincian_anggaran extends CI_Controller {
                 }
                 if ($this->role == 1) {
                     if ($row->status == 0) {
-                        $sub_data[] ="<div class='btn-group'>
+                        $sub_data[] ="<div class='btn-group dropleft'>
                         <button class='btn btn-secondary btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                         <i class='fa fa-list'></i>
                         </button>
                         <div class='dropdown-menu'><a href='javascript:void(0)' name='rekomendasi' class='dropdown-item mr-2 editRekomendasi' id='".$row->id."' title='Rekomendasi'><i class='fa fa-bullhorn'></i> Beri Rekomendasi</a><a href='javascript:void(0)' name='changeStatus' class='dropdown-item mr-2 changeStatus' id='".$row->id."' data-status='1' title='Setujui'><i class='fa fa-check'></i> Disetujui</a></div></div>";
                     }else{
-                        $sub_data[] ="<div class='btn-group'>
+                        $sub_data[] ="<div class='btn-group dropleft'>
                         <button class='btn btn-secondary btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                         <i class='fa fa-list'></i>
                         </button>
@@ -74,8 +84,14 @@ class Rincian_anggaran extends CI_Controller {
                     }
                 }else if($this->role == 2){
                     if ($row->status == 0) {
-                        $sub_data[] ="<div class='btn-group'>
+                        $sub_data[] ="<div class='btn-group dropleft'>
                         <button class='btn btn-secondary btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                        <i class='fa fa-list'></i>
+                        </button>
+                        <div class='dropdown-menu'><a href='javascript:void(0)' name='telaahan' class='dropdown-item mr-2 editTelaahan' id='".$row->id."' title='Telaahan'><i class='fa fa-comments'></i> Telaah</a><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 editRincian' id='".$row->id."' title='Edit Rincian'><i class='fa fa-edit'></i>Edit Rincian</a><a href='javascript:void(0)' name='delete' class='dropdown-item mr-2 hapusRincian' id='".$row->id."' title='Hapus Rincian'><i class='fa fa-trash'></i> Hapus Rincian</a></div></div>";
+                    }else{
+                        $sub_data[] ="<div class='btn-group dropleft'>
+                        <button class='btn btn-secondary btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' disabled>
                         <i class='fa fa-list'></i>
                         </button>
                         <div class='dropdown-menu'><a href='javascript:void(0)' name='telaahan' class='dropdown-item mr-2 editTelaahan' id='".$row->id."' title='Telaahan'><i class='fa fa-comments'></i> Telaah</a><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 editRincian' id='".$row->id."' title='Edit Rincian'><i class='fa fa-edit'></i>Edit Rincian</a><a href='javascript:void(0)' name='delete' class='dropdown-item mr-2 hapusRincian' id='".$row->id."' title='Hapus Rincian'><i class='fa fa-trash'></i> Hapus Rincian</a></div></div>";
@@ -87,6 +103,12 @@ class Rincian_anggaran extends CI_Controller {
                         <i class='fa fa-list'></i>
                         </button>
                         <div class='dropdown-menu'><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 editRincian' id='".$row->id."' title='Edit Rincian'><i class='fa fa-edit'></i>Edit Rincian</a><a href='javascript:void(0)' name='delete' class='dropdown-item mr-2 hapusRincian' id='".$row->id."' title='Hapus Rincian'><i class='fa fa-trash'></i> Hapus Rincian</a> </div></div>";
+                    }else{
+                        $sub_data[] ="<div class='btn-group'>
+                        <button class='btn btn-secondary btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' disabled>
+                        <i class='fa fa-list'></i>
+                        </button>
+                        <div class='dropdown-menu'><a href='javascript:void(0)' name='telaahan' class='dropdown-item mr-2 editTelaahan' id='".$row->id."' title='Telaahan'><i class='fa fa-comments'></i> Telaah</a><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 editRincian' id='".$row->id."' title='Edit Rincian'><i class='fa fa-edit'></i>Edit Rincian</a><a href='javascript:void(0)' name='delete' class='dropdown-item mr-2 hapusRincian' id='".$row->id."' title='Hapus Rincian'><i class='fa fa-trash'></i> Hapus Rincian</a></div></div>";
                     }
                 }
                 
@@ -99,8 +121,8 @@ class Rincian_anggaran extends CI_Controller {
             $output['recordsTotal'] = 0;
             $output['recordsFiltered'] = 0;
         }else{
-            $output['recordsTotal'] = $this->model_rincian_anggaran->get_all_data();
-            $output['recordsFiltered'] = $this->model_rincian_anggaran->get_filtered_data();
+            $output['recordsTotal'] = count($data);
+            $output['recordsFiltered'] = count($data);
         }
         $output['data'] = $data;
         

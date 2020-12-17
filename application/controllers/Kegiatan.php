@@ -13,11 +13,13 @@ class Kegiatan extends CI_Controller {
         $this->nama = $this->session->userdata('nama');
         $this->nip = $this->session->userdata('nip');
         $this->role = $this->session->userdata('role');
+        $this->nama_role = $this->session->userdata('nama_role');
         $this->content = array(
             'base_url' => base_url(),
             'nama' => $this->nama,
             'nip' => $this->nip,
-            'role' => $this->role
+            'role' => $this->role,
+            'nama_role' => $this->nama_role,
         );
         $this->load->model('model_kegiatan');
         // $this->load->library('encrypt');
@@ -180,47 +182,121 @@ class Kegiatan extends CI_Controller {
         $data = array();
         $no = 1;
         foreach($list as $row):
-            $user = $this->model_users->getById($row->nama_pengusul)->row();
-            $sub_data = array();
-            $sub_data[] = $no;
-            $sub_data[] = $row->kegiatan;
-            $sub_data[] = $row->sub_kegiatan;
-            $newTanggal = date('d F Y',strtotime($row->tanggal));
-            $sub_data[] = $newTanggal;
-            $sub_data[] = "Rp.".number_format($row->anggaran);
-            if (!empty($user)) {
-                $sub_data[] = $user->nama;
+            if ($this->role == 1) {
+                $user = $this->model_users->getById($row->nama_pengusul)->row();
+                $sub_data = array();
+                $sub_data[] = $no;
+                $sub_data[] = $row->kegiatan;
+                $sub_data[] = $row->sub_kegiatan;
+                $newTanggal = date('d F Y',strtotime($row->tanggal));
+                $sub_data[] = $newTanggal;
+                $sub_data[] = "Rp.".number_format($row->anggaran);
+                if (!empty($user)) {
+                    $sub_data[] = $user->nama;
+                }else{
+                    $sub_data[] = "<span class='text-danger'> USER SUDAH DI HAPUS ! </span>";
+                }
+                $sub_data[] = $row->created_by;
+                if ($this->input->post('page')) {
+                    $sub_data[] = "<div class='btn-group dropleft'>
+                    <button class='btn btn-success btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                        <i class='fa fa-list'></i>
+                    </button>
+                    <div class='dropdown-menu'>
+                        <a href='".base_url()."printKegiatan/".$row->id."' name='edit' class='dropdown-item mr-2 printAll' id='".$row->id."'><i class='fa fa-eye'></i> Pratinjau</a>
+                    </div>
+                </div>";
+                }else{
+                    $sub_data[] = "<div class='btn-group dropleft'>
+                            <button class='btn btn-success btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                <i class='fa fa-list'></i>
+                            </button>
+                            <div class='dropdown-menu'>
+                            <a href='".base_url()."detailKegiatan/".$row->id."' name='tampilkan' class='dropdown-item mr-2 tampilkan' id='".$row->id."' title='tampilkan informasi Kegiatan'><i class='fa fa-plus-circle'></i> Tampilkan</a><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 update' id='".$row->id."'><i class='fa fa-edit'></i> Edit </a><a href='javascript:(0)' name='delete' class='dropdown-item mr-2 delete' id='".$row->id."'><i class='fa fa-trash'></i> Delete </a>;
+                            </div>
+                        </div>";
+                }
+                $data[] = $sub_data;
             }else{
-                $sub_data[] = "<span class='text-danger'> USER SUDAH DI HAPUS ! </span>";
-            }
-            $sub_data[] = $row->created_by;
-            if ($this->input->post('page')) {
-                $sub_data[] = "<div class='btn-group'>
-                <button class='btn btn-success btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                    <i class='fa fa-list'></i>
-                </button>
-                <div class='dropdown-menu'>
-                    <a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 printAll' id='".$row->id."'><i class='fa fa-print'></i> Export To PDF Keseluruhan</a>;
-                </div>
-              </div>";
-            }else{
-                $sub_data[] = "<div class='btn-group'>
+                if ($row->nama_pengusul == $this->id) {
+                    $user = $this->model_users->getById($row->nama_pengusul)->row();
+                    $sub_data = array();
+                    $sub_data[] = $no;
+                    $sub_data[] = $row->kegiatan;
+                    $sub_data[] = $row->sub_kegiatan;
+                    $newTanggal = date('d F Y',strtotime($row->tanggal));
+                    $sub_data[] = $newTanggal;
+                    $sub_data[] = "Rp.".number_format($row->anggaran);
+                    if (!empty($user)) {
+                        $sub_data[] = $user->nama;
+                    }else{
+                        $sub_data[] = "<span class='text-danger'> USER SUDAH DI HAPUS ! </span>";
+                    }
+                    $sub_data[] = $row->created_by;
+                    if ($this->input->post('page')) {
+                        $sub_data[] = "<div class='btn-group dropleft'>
                         <button class='btn btn-success btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                             <i class='fa fa-list'></i>
                         </button>
                         <div class='dropdown-menu'>
-                        <a href='".base_url()."detailKegiatan/".$row->id."' name='tampilkan' class='dropdown-item mr-2 tampilkan' id='".$row->id."' title='tampilkan informasi Kegiatan'><i class='fa fa-plus-circle'></i> Tampilkan</a><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 update' id='".$row->id."'><i class='fa fa-edit'></i> Edit </a><a href='javascript:(0)' name='delete' class='dropdown-item mr-2 delete' id='".$row->id."'><i class='fa fa-trash'></i> Delete </a>;
+                            <a href='".base_url()."printKegiatan/".$row->id."' name='edit' class='dropdown-item mr-2 printAll' id='".$row->id."'><i class='fa fa-eye'></i> Pratinjau</a>
                         </div>
-                      </div>";
+                    </div>";
+                    }else{
+                        $sub_data[] = "<div class='btn-group dropleft'>
+                                <button class='btn btn-success btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                    <i class='fa fa-list'></i>
+                                </button>
+                                <div class='dropdown-menu'>
+                                <a href='".base_url()."detailKegiatan/".$row->id."' name='tampilkan' class='dropdown-item mr-2 tampilkan' id='".$row->id."' title='tampilkan informasi Kegiatan'><i class='fa fa-plus-circle'></i> Tampilkan</a><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 update' id='".$row->id."'><i class='fa fa-edit'></i> Edit </a><a href='javascript:(0)' name='delete' class='dropdown-item mr-2 delete' id='".$row->id."'><i class='fa fa-trash'></i> Delete </a>;
+                                </div>
+                            </div>";
+                    }
+                    $data[] = $sub_data;
+                }else if($row->nama_pemegang_kegiatan == $this->id){
+                    $user = $this->model_users->getById($row->nama_pengusul)->row();
+                    $sub_data = array();
+                    $sub_data[] = $no;
+                    $sub_data[] = $row->kegiatan;
+                    $sub_data[] = $row->sub_kegiatan;
+                    $newTanggal = date('d F Y',strtotime($row->tanggal));
+                    $sub_data[] = $newTanggal;
+                    $sub_data[] = "Rp.".number_format($row->anggaran);
+                    if (!empty($user)) {
+                        $sub_data[] = $user->nama;
+                    }else{
+                        $sub_data[] = "<span class='text-danger'> USER SUDAH DI HAPUS ! </span>";
+                    }
+                    $sub_data[] = $row->created_by;
+                    if ($this->input->post('page')) {
+                        $sub_data[] = "<div class='btn-group dropleft'>
+                        <button class='btn btn-success btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                            <i class='fa fa-list'></i>
+                        </button>
+                        <div class='dropdown-menu'>
+                            <a href='".base_url()."printKegiatan/".$row->id."' name='edit' class='dropdown-item mr-2 printAll' id='".$row->id."'><i class='fa fa-eye'></i> Pratinjau</a>
+                        </div>
+                    </div>";
+                    }else{
+                        $sub_data[] = "<div class='btn-group dropleft'>
+                                <button class='btn btn-success btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                    <i class='fa fa-list'></i>
+                                </button>
+                                <div class='dropdown-menu'>
+                                <a href='".base_url()."detailKegiatan/".$row->id."' name='tampilkan' class='dropdown-item mr-2 tampilkan' id='".$row->id."' title='tampilkan informasi Kegiatan'><i class='fa fa-plus-circle'></i> Tampilkan</a><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 update' id='".$row->id."'><i class='fa fa-edit'></i> Edit </a><a href='javascript:(0)' name='delete' class='dropdown-item mr-2 delete' id='".$row->id."'><i class='fa fa-trash'></i> Delete </a>;
+                                </div>
+                            </div>";
+                    }
+                    $data[] = $sub_data;
+                }
             }
-            $data[] = $sub_data;
         $no++;
         endforeach;     
 
         $output = array(
             'draw' => intval($_POST['draw']),
-            'recordsTotal' => $this->model_kegiatan->get_all_data(),
-            'recordsFiltered' => $this->model_kegiatan->get_filtered_data(),
+            'recordsTotal' => count($data),
+            'recordsFiltered' => count($data),
             'data' => $data
         );
         echo json_encode($output);
@@ -391,9 +467,9 @@ class Kegiatan extends CI_Controller {
         $this->twig->display('report/printAll.html',$this->content);
     }
 
-    public function printKegiatan()
+    public function printKegiatan($id_kegiatan)
     {
-        $id_kegiatan = $this->input->post('id_kegiatan');
+        // $id_kegiatan = $this->input->post('id_kegiatan');
         $kegiatan = $this->model_kegiatan->getById($id_kegiatan)->row();
         $this->load->model('model_bagian');
         $bagian = $this->model_bagian->getById($kegiatan->bagian)->row();
@@ -434,7 +510,7 @@ class Kegiatan extends CI_Controller {
                 
                 array_push($kode1, $tp->belanja1);
                 $uraian1 = $this->model_belanja->getBykodering($tp->belanja1);
-                $where1 = array('belanja1'=>$uraian1->ALL_90_M);
+                $where1 = array('id_kegiatan'=>$id_kegiatan,'belanja1'=>$uraian1->ALL_90_M);
                 $total1 = $this->model_tipe_belanja->getTotal($where1)->row();
                 $data1 = array(
                     'id' => $tp->id,
@@ -455,7 +531,7 @@ class Kegiatan extends CI_Controller {
 
                 array_push($kode2, $tp->belanja2);
                 $uraian2 = $this->model_belanja->getBykodering($tp->belanja2);
-                $where2 = array('belanja1'=>$tp->belanja1,'belanja2'=>$uraian2->ALL_90_M);
+                $where2 = array('id_kegiatan'=>$id_kegiatan,'belanja1'=>$tp->belanja1,'belanja2'=>$uraian2->ALL_90_M);
                 $total2 = $this->model_tipe_belanja->getTotal($where2)->row();
                 $data2 = array(
                     'id' => $tp->id,
@@ -562,10 +638,59 @@ class Kegiatan extends CI_Controller {
         $twig->addGlobal('tipe_belanja',$tipe_belanja);
         $twig->addGlobal('rincian',$rincian_anggaran);
         $twig->addGlobal('koefisien',$koefisien);
-        $mpdf = new \Mpdf\Mpdf();
-		$data = $this->load->view('printKegiatan',$this->content,TRUE);
-		$mpdf->WriteHTML($data);
-		$mpdf->Output('laporan.pdf','I');
-        // $this->twig->display('printKegiatan.html',$this->content);
+        // $mpdf = new \Mpdf\Mpdf();
+		// $data = $this->load->view('printKegiatan',$this->content,TRUE);
+		// $mpdf->WriteHTML($data);
+		// $mpdf->Output('laporan.pdf','I');
+        $this->twig->display('printKegiatan.html',$this->content);
     }
+
+    public function listRekap()
+    {
+        $this->twig->display('rekap.html',$this->content);
+    }
+
+    public function rekapLists()
+    {
+        $list = $this->model_kegiatan->getRekap();
+        $data = array();
+        $no = 1;
+        foreach($list as $row)
+        {
+            $sub_data = array();
+            $sub_data[] = $no;
+            $sub_data[] = $row->kegiatan;
+            $sub_data[] = $row->sub_kegiatan;
+            $sub_data[] = $row->belanja4;
+            $sub_data[] = "Rp.".number_format($row->jumlah_rincian);
+            $data[] = $sub_data;
+            $no++;
+        }
+        $output = array(
+            'draw' => intval($_POST['draw']),
+            'recordsTotal' => count($data),
+            'recordsFiltered' => count($data),
+            'data' => $data
+        );
+        echo json_encode($output);
+    }
+    // backup rekap
+    // $this->load->model('model_rincian_anggaran');
+    // $this->load->model('model_rincian_anggaran_koefisien');
+    // $this->load->model('model_tipe_belanja');
+    // $rincian = $this->model_rincian_anggaran->getAll();
+    // // $koefisien = $this->model_rincian_anggaran_koefisien->getAll();
+    // $no=1;
+    // foreach($rincian as $r){
+    //     $sub_data = array();
+    //     $sub_data[] = $no;
+    //     $belanja = $this->model_tipe_belanja->getById($r->id_tipe_belanja);
+    //     $kegiatan = $this->model_kegiatan->getById($belanja->id_kegiatan)->row();
+    //     $sub_data[] = $kegiatan->kegiatan;
+    //     $sub_data[] = $kegiatan->sub_kegiatan;
+    //     $sub_data[] = $belanja->belanja4;
+    //     $sub_data[] = $r->jumlah_rincian;
+    //     $data[] = $sub_data;
+    //     $no++;
+    // }
 }

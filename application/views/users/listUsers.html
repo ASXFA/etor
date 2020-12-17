@@ -22,27 +22,29 @@
         <div class="card-header">
             <h3 class="card-title d-inline mt-2">List Users</h3>
             <span clas="float-right">
-                <button type="button" data-toggle="modal" data-target="#addUsersModal" class="btn btn-primary btn-sm float-right" >
+                <button type="button" id="btnAddUserModal" class="btn btn-primary btn-sm float-right" >
                     <i class="fa fa-plus"></i>
                 </button>
             </span>
         </div>
         <div class="card-body">
-            <table id="tableUsers" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th>No</th>
-                    <th>NIP</th>
-                    <th>Nama User</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Created By</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody id="listUsers">
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table id="tableUsers" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>NIP</th>
+                        <th>Nama User</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Created By</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="listUsers">
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <!-- /.card -->
@@ -52,7 +54,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Tambah Data User</h5>
+                <h5 class="modal-title">User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

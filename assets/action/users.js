@@ -24,6 +24,19 @@ $(function(){
         timer: 3000
     });
 
+    $('#btnAddUserModal').click(function(){
+        $('#addUsersModal').modal('show');
+        $('#user_id').val('');
+        $('#action').val('Add');
+        $('#operation').val('Add');
+        $('#nip').val('');
+        $('#nama').val('');
+        $('#email').val('');
+        $('#no_hp').val('');
+        $('#jabatan').val('');
+        $('#role_user').val('');
+    })
+
     // action form
     $('#formUsers').submit(function(e){
         e.preventDefault();

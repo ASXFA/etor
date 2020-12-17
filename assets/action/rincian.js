@@ -39,6 +39,11 @@ $(function(){
         $('#id_rincian').val('');
     });
 
+    $('#satuan1').keyup(function(){
+        var satuan1 = $('#satuan1').val();
+        $('#satuan').val(satuan1);
+    })
+
     $(document).on('click','.editRincian',function(){
         var id = $(this).attr('id');
         $('#tambahRincianModal').modal('show');
@@ -50,11 +55,11 @@ $(function(){
             url:'../rincianById',
             success:function(result){
                 $('#deskripsi').val(result.deskripsi);
-                $('#jumlah1').val(result.jumlah1);
+                $('#jumlah1').val(result.jumlah1).trigger('change');
                 $('#satuan1').val(result.satuan1);
-                $('#jumlah2').val(result.jumlah2);
+                $('#jumlah2').val(result.jumlah2).trigger('change');
                 $('#satuan2').val(result.satuan2);
-                $('#jumlah3').val(result.jumlah3);
+                $('#jumlah3').val(result.jumlah3).trigger('change');
                 $('#satuan3').val(result.satuan3);
                 $('#jumlah4').val(result.jumlah4);
                 $('#satuan4').val(result.satuan4);

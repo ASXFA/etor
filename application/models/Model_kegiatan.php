@@ -46,6 +46,31 @@ class Model_kegiatan extends CI_Model{
         return $this->db->count_all_results();
     }
 
+    public function getRekap()
+    {
+        $this->db->select('*');
+        $this->db->from('kegiatan');
+        if (isset($_POST['search']['value'])) {
+            $this->db->or_like('kegiatan',$_POST['search']['value']);
+            $this->db->or_like('sub_kegiatan',$_POST['search']['value']);
+            $this->db->or_like('belanja4',$_POST['search']['value']);
+            $this->db->or_like('jumlah_anggaran',$_POST['search']['value']);
+        }
+        $this->db->join('tipe_belanja','tipe_belanja.id_kegiatan = kegiatan.id','right');
+        $this->db->join('rincian_anggaran','rincian_anggaran.id_tipe_belanja = tipe_belanja.id','left');
+        // if (isset($_POST['order'])) {
+        //     $this->db->order_by($this->order_column[$_POST['order']['0']['column']],$_POST['order']['0']['dir']);
+        // }else{
+            
+        // }
+        // $this->db->join('rincian_anggaran_koefisien','rincian_anggaran_koefisien.id_rincian_anggaran = rincian_anggaran.id','right');
+        if ($_POST['length'] != -1) {
+            $this->db->limit($_POST['length'],$_POST['start']);
+        }
+        $this->db->order_by('belanja4','ASC');
+        return $this->db->get()->result();
+    }
+
     public function getAll()
     {
         return $this->db->get($this->table)->result();

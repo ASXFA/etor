@@ -22,24 +22,26 @@
         <div class="card-header">
             <h3 class="card-title d-inline mt-2">Role Permission</h3>
             <span clas="float-right">
-                <button type="button" data-toggle="modal" data-target="#addRoleModal" class="btn btn-primary btn-sm float-right" >
+                <button type="button" id="btnAddRoleModal" class="btn btn-primary btn-sm float-right" >
                     <i class="fa fa-plus"></i>
                 </button>
             </span>
         </div>
         <div class="card-body">
-            <table id="tableRole" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th width="5%">No</th>
-                    <th>Nama Role</th>
-                    <th>Created By</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody id="listRole">
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table id="tableRole" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th width="5%">No</th>
+                        <th>Nama Role</th>
+                        <th>Created By</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="listRole">
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <!-- /.card -->
@@ -49,7 +51,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Tambah Role</h5>
+                <h5 class="modal-title">Role</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

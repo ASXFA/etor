@@ -13,11 +13,13 @@ class Tipe_Belanja extends CI_Controller {
         $this->nama = $this->session->userdata('nama');
         $this->nip = $this->session->userdata('nip');
         $this->role = $this->session->userdata('role');
+        $this->nama_role = $this->session->userdata('nama_role');
         $this->content = array(
             'base_url' => base_url(),
             'nama' => $this->nama,
             'nip' => $this->nip,
-            'role' => $this->role
+            'role' => $this->role,
+            'nama_role' => $this->nama_role,
         );
         $this->load->model('model_tipe_belanja');
     }
@@ -50,8 +52,8 @@ class Tipe_Belanja extends CI_Controller {
                 $sub_data[] = $row->tipe_anggaran;
                 $sub_data[] = "Rp. ".number_format($row->jumlah_anggaran);
                 $sub_data[] = $row->created_by;
-                if ($this->role != 1) {
-                    $sub_data[] = "<div class='btn-group'>
+                if ($this->role == 3) {
+                    $sub_data[] = "<div class='btn-group dropleft'>
                         <button class='btn btn-secondary btn-sm' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                         <i class='fa fa-list'></i>
                         </button>
@@ -62,7 +64,7 @@ class Tipe_Belanja extends CI_Controller {
                         </div>
                         </div>";
                 }else{
-                    $sub_data[] = "<div class='btn-group'>
+                    $sub_data[] = "<div class='btn-group dropleft'>
                         <button class='btn btn-secondary btn-sm' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                         <i class='fa fa-list'></i>
                         </button>
