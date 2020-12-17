@@ -64,26 +64,30 @@ class Rincian_anggaran extends CI_Controller {
                         <button class='btn btn-secondary btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                         <i class='fa fa-list'></i>
                         </button>
-                        <div class='dropdown-menu'><a href='javascript:void(0)' name='rekomendasi' class='dropdown-item mr-2 editRekomendasi' id='".$row->id."' title='Rekomendasi'><i class='fa fa-bullhorn'></i> Beri Rekomendasi</a><a href='javascript:void(0)' name='changeStatus' class='dropdown-item mr-2 changeStatus' id='".$row->id."' data-status='1' title='Setujui'><i class='fa fa-check'></i> Disetujui</a><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 editRincian' id='".$row->id."' title='Edit Rincian'><i class='fa fa-edit'></i> Edit Rincian</a><a href='javascript:void(0)' name='delete' class='dropdown-item mr-2 hapusRincian' id='".$row->id."' title='Hapus Rincian'><i class='fa fa-trash'></i> Hapus Rincian</a></div></div>";
+                        <div class='dropdown-menu'><a href='javascript:void(0)' name='rekomendasi' class='dropdown-item mr-2 editRekomendasi' id='".$row->id."' title='Rekomendasi'><i class='fa fa-bullhorn'></i> Beri Rekomendasi</a><a href='javascript:void(0)' name='changeStatus' class='dropdown-item mr-2 changeStatus' id='".$row->id."' data-status='1' title='Setujui'><i class='fa fa-check'></i> Disetujui</a></div></div>";
                     }else{
                         $sub_data[] ="<div class='btn-group'>
                         <button class='btn btn-secondary btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                         <i class='fa fa-list'></i>
                         </button>
-                        <div class='dropdown-menu'><a href='javascript:void(0)' name='rekomendasi' class='dropdown-item mr-2 editRekomendasi' id='".$row->id."' title='Rekomendasi'><i class='fa fa-bullhorn'></i> Beri Rekomendasi</a><a href='javascript:void(0)' name='changeStatus' class='dropdown-item mr-2 changeStatus' id='".$row->id."' data-status='0' title='Belumdisetujui'><i class='fa fa-times'></i> Belum Disetujui</a><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 editRincian' id='".$row->id."' title='Edit Rincian'><i class='fa fa-edit'></i> Edit Rincian</a><a href='javascript:void(0)' name='delete' class='dropdown-item mr-2 hapusRincian' id='".$row->id."' title='Hapus Rincian'><i class='fa fa-trash'></i> Hapus Rincian</a></div></div>";
+                        <div class='dropdown-menu'><a href='javascript:void(0)' name='changeStatus' class='dropdown-item mr-2 changeStatus' id='".$row->id."' data-status='0' title='Belumdisetujui'><i class='fa fa-times'></i> Belum Disetujui</a></div></div>";
                     }
                 }else if($this->role == 2){
-                    $sub_data[] ="<div class='btn-group'>
-                    <button class='btn btn-secondary btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                    <i class='fa fa-list'></i>
-                    </button>
-                    <div class='dropdown-menu'><a href='javascript:void(0)' name='telaahan' class='dropdown-item mr-2 editTelaahan' id='".$row->id."' title='Telaahan'><i class='fa fa-comments'></i> Telaah</a><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 editRincian' id='".$row->id."' title='Edit Rincian'><i class='fa fa-edit'></i>Edit Rincian</a><a href='javascript:void(0)' name='delete' class='dropdown-item mr-2 hapusRincian' id='".$row->id."' title='Hapus Rincian'><i class='fa fa-trash'></i> Hapus Rincian</a></div></div>";
+                    if ($row->status == 0) {
+                        $sub_data[] ="<div class='btn-group'>
+                        <button class='btn btn-secondary btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                        <i class='fa fa-list'></i>
+                        </button>
+                        <div class='dropdown-menu'><a href='javascript:void(0)' name='telaahan' class='dropdown-item mr-2 editTelaahan' id='".$row->id."' title='Telaahan'><i class='fa fa-comments'></i> Telaah</a><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 editRincian' id='".$row->id."' title='Edit Rincian'><i class='fa fa-edit'></i>Edit Rincian</a><a href='javascript:void(0)' name='delete' class='dropdown-item mr-2 hapusRincian' id='".$row->id."' title='Hapus Rincian'><i class='fa fa-trash'></i> Hapus Rincian</a></div></div>";
+                    }
                 }else if($this->role == 3){
-                    $sub_data[] ="<div class='btn-group'>
-                    <button class='btn btn-secondary btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                    <i class='fa fa-list'></i>
-                    </button>
-                    <div class='dropdown-menu'><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 editRincian' id='".$row->id."' title='Edit Rincian'><i class='fa fa-edit'></i>Edit Rincian</a><a href='javascript:void(0)' name='delete' class='dropdown-item mr-2 hapusRincian' id='".$row->id."' title='Hapus Rincian'><i class='fa fa-trash'></i> Hapus Rincian</a> </div></div>";
+                    if ($row->status == 0) {
+                        $sub_data[] ="<div class='btn-group'>
+                        <button class='btn btn-secondary btn-sm text-white' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                        <i class='fa fa-list'></i>
+                        </button>
+                        <div class='dropdown-menu'><a href='javascript:void(0)' name='edit' class='dropdown-item mr-2 editRincian' id='".$row->id."' title='Edit Rincian'><i class='fa fa-edit'></i>Edit Rincian</a><a href='javascript:void(0)' name='delete' class='dropdown-item mr-2 hapusRincian' id='".$row->id."' title='Hapus Rincian'><i class='fa fa-trash'></i> Hapus Rincian</a> </div></div>";
+                    }
                 }
                 
                 $data[] = $sub_data;

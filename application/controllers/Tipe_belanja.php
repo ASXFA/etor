@@ -50,7 +50,8 @@ class Tipe_Belanja extends CI_Controller {
                 $sub_data[] = $row->tipe_anggaran;
                 $sub_data[] = "Rp. ".number_format($row->jumlah_anggaran);
                 $sub_data[] = $row->created_by;
-                $sub_data[] = "<div class='btn-group'>
+                if ($this->role != 1) {
+                    $sub_data[] = "<div class='btn-group'>
                         <button class='btn btn-secondary btn-sm' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                         <i class='fa fa-list'></i>
                         </button>
@@ -60,6 +61,16 @@ class Tipe_Belanja extends CI_Controller {
                             <a href='javascript:void(0)' name='deleteTipeBelanja' class='dropdown-item deleteTipeBelanja' id='".$row->id."' title='Delete Usulan'><i class='fa fa-trash'></i> Hapus Tipe Belanja </a>
                         </div>
                         </div>";
+                }else{
+                    $sub_data[] = "<div class='btn-group'>
+                        <button class='btn btn-secondary btn-sm' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                        <i class='fa fa-list'></i>
+                        </button>
+                        <div class='dropdown-menu'>
+                        <a href='".base_url()."detailTipeBelanja/".$row->id."' name='tambahUsulan' class='dropdown-item tambahUsulan' id='".$row->id."' title='Tambah Usulan'><i class='fa fa-eye'></i> Lihat Usulan </a>
+                        </div>
+                        </div>";
+                }
                 $data[] = $sub_data;
             }
             $no++;

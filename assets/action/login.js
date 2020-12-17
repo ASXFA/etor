@@ -1,5 +1,6 @@
 $(function(){
-    $('#btnLogin').click(function(){
+    $('#formLogin').submit(function(e){
+        e.preventDefault();
         var nip = $('#nip').val();
         var pass = $('#pass').val();
         
